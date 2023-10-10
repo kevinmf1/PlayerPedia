@@ -6,7 +6,7 @@ import com.vinz.playerpedia.adapter.PlayerAdapter
 import com.vinz.playerpedia.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var playerAdapter: PlayerAdapter
+
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,4 +14,5 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+
 }

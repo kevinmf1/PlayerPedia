@@ -1,16 +1,17 @@
 package com.vinz.playerpedia.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.vinz.playerpedia.R
-import com.vinz.playerpedia.data.PlayerWordStart
+import com.vinz.playerpedia.data.PlayerWordData
 
-class PlayerAdapter(private val playerList: List<PlayerWordStart>) :
-    RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
+class PlayerDataAdapter(
+    private val playerList: List<PlayerWordData>
+) :
+    RecyclerView.Adapter<PlayerDataAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -19,7 +20,7 @@ class PlayerAdapter(private val playerList: List<PlayerWordStart>) :
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: PlayerWordStart)
+        fun onItemClicked(data: PlayerWordData)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +30,7 @@ class PlayerAdapter(private val playerList: List<PlayerWordStart>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val player = playerList[position]
-        holder.word.text = player.playerLetter
+        holder.word.text = player.playerWordName
         holder.itemView.setOnClickListener {
             onItemClickCallback.onItemClicked(playerList[position])
         }
