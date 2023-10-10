@@ -1,4 +1,4 @@
-package com.vinz.playerpedia
+package com.vinz.playerpedia.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vinz.playerpedia.R
 import com.vinz.playerpedia.adapter.PlayerDataAdapter
 import com.vinz.playerpedia.data.PlayerDummyData.playerDummy
 import com.vinz.playerpedia.data.PlayerWordData
@@ -21,8 +22,6 @@ class PlayerWordDataFragment : Fragment() {
 
     private lateinit var playerDataAdapter: PlayerDataAdapter
     private lateinit var recyclerView: RecyclerView
-
-    private var playerList: List<PlayerWordData>? = null
 
 
     override fun onCreateView(

@@ -1,45 +1,35 @@
-package com.vinz.playerpedia
+package com.vinz.playerpedia.activity
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vinz.playerpedia.R
 import com.vinz.playerpedia.adapter.PlayerAdapter
 import com.vinz.playerpedia.data.PlayerDummyData
-import com.vinz.playerpedia.data.PlayerWordData
 import com.vinz.playerpedia.data.PlayerWordStart
-import com.vinz.playerpedia.databinding.FragmentPlayerWordStartBinding
+import com.vinz.playerpedia.databinding.ActivityMainBinding
 
-class PlayerWordStartFragment : Fragment() {
+class MainActivity : AppCompatActivity() {
 
-    private var _binding : FragmentPlayerWordStartBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : ActivityMainBinding
 
     private lateinit var playerAdapter: PlayerAdapter
     private lateinit var recyclerView: RecyclerView
 
     private var isLinearLayoutManager = true
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding  = FragmentPlayerWordStartBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         recyclerView = binding.rvWords
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(this)
         playerAdapter = PlayerAdapter(PlayerDummyData.playerDummy)
         recyclerView.adapter = playerAdapter
 
@@ -58,24 +48,19 @@ class PlayerWordStartFragment : Fragment() {
 
     private fun setLayout() {
         if (isLinearLayoutManager) {
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.layoutManager = LinearLayoutManager(this)
             binding.btnChangeView.setImageResource(R.drawable.ic_grid)
         } else {
-            recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+            recyclerView.layoutManager = GridLayoutManager(this, 2)
             binding.btnChangeView.setImageResource(R.drawable.ic_list)
         }
     }
 
     private fun showSelectedWord(player: PlayerWordStart) {
-        val mBundle = Bundle()
+        val intent = Intent(this, PlayerDataActivity::class.java)
         val playerLetterToFind = player.playerLetter
-        mBundle.putString("playerData", playerLetterToFind)
-        view?.findNavController()?.navigate(R.id.action_playerWordStartFragment_to_playerWordDataFragment, mBundle)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        intent.putExtra("playerData", playerLetterToFind)
+        startActivity(intent)
     }
 
 }

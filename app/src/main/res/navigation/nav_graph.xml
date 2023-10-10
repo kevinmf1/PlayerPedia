@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/playerWordStartFragment"
-        android:name="com.vinz.playerpedia.PlayerWordStartFragment"
+        android:name="com.vinz.playerpedia.fragment.PlayerWordStartFragment"
         android:label="fragment_player_word_start"
         tools:layout="@layout/fragment_player_word_start">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/playerWordDataFragment"
-        android:name="com.vinz.playerpedia.PlayerWordDataFragment"
+        android:name="com.vinz.playerpedia.fragment.PlayerWordDataFragment"
         android:label="fragment_player_word_data"
         tools:layout="@layout/fragment_player_word_data">
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.vinz.playerpedia.DetailFragment"
+        android:name="com.vinz.playerpedia.fragment.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
 
