@@ -4,7 +4,7 @@ object PlayerDummyData {
 
     val playerDummy = listOf(
         PlayerWordStart(
-            playerLetter = 'A',
+            playerLetter = "A",
             playerWordList = listOf(
                 PlayerWordData(
                     playerWordName = "Alessandro Del Piero",
@@ -33,7 +33,7 @@ object PlayerDummyData {
             ),
         ),
         PlayerWordStart(
-            playerLetter = 'B',
+            playerLetter = "B",
             playerWordList = listOf(
                 PlayerWordData(
                     playerWordName = "Bastian Schweinsteiger",
@@ -62,7 +62,7 @@ object PlayerDummyData {
             ),
         ),
         PlayerWordStart(
-            playerLetter = 'C',
+            playerLetter = "C",
             playerWordList = listOf(
                 PlayerWordData(
                     playerWordName = "Cafu",
@@ -91,7 +91,7 @@ object PlayerDummyData {
             ),
         ),
         PlayerWordStart(
-            playerLetter = 'D',
+            playerLetter = "D",
             playerWordList = listOf(
                 PlayerWordData(
                     playerWordName = "David Beckham",
@@ -120,7 +120,7 @@ object PlayerDummyData {
             ),
         ),
         PlayerWordStart(
-            playerLetter = 'E',
+            playerLetter = "E",
             playerWordList = listOf(
                 PlayerWordData(
                     playerWordName = "Eden Hazard",
@@ -149,7 +149,7 @@ object PlayerDummyData {
             ),
         ),
         PlayerWordStart(
-            playerLetter = 'F',
+            playerLetter = "F",
             playerWordList = listOf(
                 PlayerWordData(
                     playerWordName = "Fabio Cannavaro",

@@ -9,7 +9,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.data.PlayerWordStart
 
-class PlayerAdapter(private val playerList: List<PlayerWordStart>, private val context: Context) :
+class PlayerAdapter(private val playerList: List<PlayerWordStart>) :
     RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -29,7 +29,10 @@ class PlayerAdapter(private val playerList: List<PlayerWordStart>, private val c
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val player = playerList[position]
-        holder.word.text = player.playerLetter.toString()
+        holder.word.text = player.playerLetter
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(playerList[position])
+        }
     }
 
     override fun getItemCount(): Int = playerList.size

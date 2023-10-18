@@ -5,4 +5,30 @@
     <string name="changeview_desc">For changing view</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="playerword_title">Everything about football player</string>
+    <string name="playerword_subtitle">Find your favorite player here!</string>
+    <string name="search_btn_text">Search on Google</string>
+    <string name="hint_email">Masukkan email anda</string>
+    <string name="hint_password">Masukkan password anda</string>
+    <string name="login_title">Login</string>
+    <string name="register_account_value">Belum punya akun? Daftar</string>
+
+    <string name="phone_number_hint_value">Masukkan nomor telepon kamu</string>
+    <string name="email_hint_value">Masukkan email kamu</string>
+    <string name="email_value">Email</string>
+    <string name="phone_number_value">Nomor Telepon</string>
+    <string name="password_hint_value">Masukkan password kamu</string>
+    <string name="retype_password_hint_value">Masukkan ulang password kamu</string>
+    <string name="password_title_value">Password</string>
+    <string name="retype_password_title_value">Konfirmasi Password</string>
+    <string name="name_hint_value">Masukkan nama kamu</string>
+    <string name="username_title_value">Username</string>
+    <string name="profile_title">Profile</string>
+    <string name="username_hint_value">Masukkan username kamu</string>
+    <string name="forgot_password_hint">Lupa password kamu?</string>
+    <string name="login_title_value">Login</string>
+    <string name="login_value">Sudah punya akun? Login</string>
+    <string name="register_title">Buat Akun Baru</string>
+    <string name="register_btn_value">Daftar</string>
+    <string name="nama_title_value">Nama</string>
 </resources>
