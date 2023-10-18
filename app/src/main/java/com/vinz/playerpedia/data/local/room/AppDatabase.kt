@@ -6,11 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.vinz.playerpedia.data.local.entity.PlayerEntity
+import com.vinz.playerpedia.data.local.entity.UserEntity
 
-@Database(entities = [PlayerEntity::class], version = 1, exportSchema = false)
+@Database(entities = [PlayerEntity::class, UserEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun playerDao(): PlayerDao
+    abstract fun userDao(): UserDao
 
     companion object {
         private const val DATABASE_NAME = "db_footballplayer.db"
@@ -32,6 +34,7 @@ abstract class AppDatabase : RoomDatabase() {
                         super.onCreate(db)
                     }
                 })
+                .fallbackToDestructiveMigration()
                 .build()
         }
     }
