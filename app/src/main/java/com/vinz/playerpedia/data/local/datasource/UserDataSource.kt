@@ -13,6 +13,8 @@ interface UserDataSource {
     fun deleteUser(user: UserEntity)
 
     fun getUserById(userId: Int): Flow<UserEntity>
+
+    fun getUserByEmailAndPassword(email: String, password: String): Flow<UserEntity>
 }
 
 class UserDatabaseDataSource(private val userDao: UserDao) : UserDataSource {
@@ -30,5 +32,9 @@ class UserDatabaseDataSource(private val userDao: UserDao) : UserDataSource {
 
     override fun getUserById(userId: Int): Flow<UserEntity> {
         return userDao.getUserById(userId)
+    }
+
+    override fun getUserByEmailAndPassword(email: String, password: String): Flow<UserEntity> {
+        return userDao.getUserByEmailAndPassword(email, password)
     }
 }
