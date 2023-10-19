@@ -20,4 +20,6 @@ class UserRepository(
     }
 
     fun getUserById(userId: Int) : Flow<UserEntity> = dataSource.getUserById(userId)
+
+    fun getUserByEmailAndPassword(email: String, password: String) : Flow<UserEntity> = dataSource.getUserByEmailAndPassword(email, password)
 }
