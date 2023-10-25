@@ -2,13 +2,11 @@ package com.vinz.playerpedia.activity.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vinz.playerpedia.R
@@ -16,6 +14,7 @@ import com.vinz.playerpedia.activity.addplayer.AddActivity
 import com.vinz.playerpedia.activity.detail.DetailActivity
 import com.vinz.playerpedia.activity.edit.EditActivity
 import com.vinz.playerpedia.activity.login.LoginActivity
+import com.vinz.playerpedia.activity.user.ProfileActivity
 import com.vinz.playerpedia.adapter.PlayerAdapter
 import com.vinz.playerpedia.core.di.PlayerViewModelFactory
 import com.vinz.playerpedia.core.domain.model.Player
@@ -71,6 +70,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnExitApp.setOnClickListener {
             dialogLogout()
+        }
+
+        binding.btnProfile.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
         }
     }
 
