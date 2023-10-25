@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.user.ProfileActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="40dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/ic_author"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_data_title" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/back_home"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_back"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_data_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/profile_data_title" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/profile_data_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Data Profile"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/edit_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_data_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/profile_data_title" />
+
+            <ImageButton
+                android:id="@+id/cancel_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:visibility="gone"
+                android:src="@drawable/ic_cancel"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_data_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/profile_data_title" />
+
+            <ImageButton
+                android:id="@+id/save_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:visibility="gone"
+                android:src="@drawable/ic_saved"
+                app:layout_constraintBottom_toBottomOf="@+id/cancel_profile"
+                app:layout_constraintEnd_toStartOf="@+id/cancel_profile"
+                app:layout_constraintTop_toTopOf="@+id/cancel_profile" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/user_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Nama Pengguna"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/back_home"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/user_name_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/user_name_title"
+                app:layout_constraintTop_toBottomOf="@+id/user_name_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_name_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Masukkan Nama Pengguna"
+                    android:inputType="textNoSuggestions" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/username_user_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Username"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/user_name_input"
+                app:layout_constraintTop_toBottomOf="@+id/user_name_input" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/username_user_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/user_name_input"
+                app:layout_constraintStart_toStartOf="@+id/username_user_title"
+                app:layout_constraintTop_toBottomOf="@+id/username_user_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username_user_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Masukkan Username"
+                    android:inputType="textNoSuggestions" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/email_user_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Email"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/username_user_input"
+                app:layout_constraintTop_toBottomOf="@+id/username_user_input" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email_user_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/username_user_input"
+                app:layout_constraintStart_toStartOf="@+id/email_user_title"
+                app:layout_constraintTop_toBottomOf="@+id/email_user_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/email_user_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Masukkan Email"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/password_user_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Password"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/email_user_input"
+                app:layout_constraintTop_toBottomOf="@+id/email_user_input" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password_user_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:endIconMode="password_toggle"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/email_user_input"
+                app:layout_constraintStart_toStartOf="@+id/password_user_title"
+                app:layout_constraintTop_toBottomOf="@+id/password_user_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password_user_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Masukkan Password"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/phone_user_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Nomor Telepon"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/email_user_input"
+                app:layout_constraintTop_toBottomOf="@+id/password_user_input" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_user_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@+id/email_user_input"
+                app:layout_constraintStart_toStartOf="@+id/phone_user_title"
+                app:layout_constraintTop_toBottomOf="@+id/phone_user_title">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone_user_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="Masukkan Nomor Telepon"
+                    android:inputType="phone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>
