@@ -53,9 +53,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.PlayerDataActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.detail.DetailActivity"
             android:exported="false" />
         <activity
