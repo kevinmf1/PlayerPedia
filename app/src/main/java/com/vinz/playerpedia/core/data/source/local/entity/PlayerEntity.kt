@@ -1,8 +1,9 @@
-package com.vinz.playerpedia.data.local.entity
+package com.vinz.playerpedia.core.data.source.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.File
 
 @Entity(tableName = "player")
 data class PlayerEntity(
@@ -26,6 +27,6 @@ data class PlayerEntity(
     val playerDescription: String,
 
     @ColumnInfo(name = "player_image")
-    val playerImage: String,
+    val playerImage: File,
 
-)
+    )
