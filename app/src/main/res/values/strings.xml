@@ -31,4 +31,19 @@
     <string name="register_title">Buat Akun Baru</string>
     <string name="register_btn_value">Daftar</string>
     <string name="nama_title_value">Nama</string>
+    <string name="add_player_title">Tambah Data Pemain</string>
+    <string name="player_name_title">Nama Pemain</string>
+    <string name="player_name_hint">Masukkan Nama Pemain</string>
+    <string name="player_club_title">Klub Pemain</string>
+    <string name="player_club_hint">Masukkan Klub Pemain</string>
+    <string name="player_position_title">Posisi Pemain</string>
+    <string name="player_position_hint">Masukkan Posisi Pemain</string>
+    <string name="player_nationally_title">Kebangsaan Pemain</string>
+    <string name="player_nationally_hint">Masukkan Kebangsaan Pemain</string>
+    <string name="player_desc_title">Deskripsi Pemain</string>
+    <string name="player_desc_hint">Masukkan Deskripsi Pemain</string>
+    <string name="player_image_title">Gambar Pemain</string>
+    <string name="player_image_hint">Masukkan Gambar Pemain</string>
+    <string name="add_player_save">Simpan</string>
+    <string name="edit_player_title">Edit Data Pemain</string>
 </resources>

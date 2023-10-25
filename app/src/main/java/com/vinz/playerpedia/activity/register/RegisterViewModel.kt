@@ -1,24 +1,19 @@
 package com.vinz.playerpedia.activity.register
 
-import android.app.Application
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.vinz.playerpedia.data.local.entity.UserEntity
+import com.vinz.playerpedia.core.domain.model.User
+import com.vinz.playerpedia.core.domain.usecase.UserUseCase
 
-class RegisterViewModel(application: Application) : ViewModel() {
-    private val mUserRepository: UserRepository = UserRepository(application)
+class RegisterViewModel(private val userUseCase: UserUseCase) : ViewModel() {
+    fun insertUser(user: User) = userUseCase.insertUser(user)
 
-    fun getUserById(id: Int): LiveData<UserEntity> = mUserRepository.getUserById(id)
-
-    fun insert(user: UserEntity) {
-        mUserRepository.insert(user)
+    fun getUserByEmailAndPassword(email: String, password: String): LiveData<User?> {
+        return userUseCase.getUserByEmailAndPassword(email, password)
     }
 
-    fun update(user: UserEntity) {
-        mUserRepository.update(user)
-    }
-
-    fun delete(user: UserEntity) {
-        mUserRepository.delete(user)
+    fun getUserByEmail(email: String): LiveData<User?> {
+        return userUseCase.getUserByEmail(email)
     }
 }

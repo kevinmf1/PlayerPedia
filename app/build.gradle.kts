@@ -29,7 +29,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
+        dataBinding = true
     }
 
     compileOptions {
@@ -67,4 +67,7 @@ dependencies {
 
     // lottie animation
     implementation("com.airbnb.android:lottie:6.1.0")
+
+    // circle image
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 }
