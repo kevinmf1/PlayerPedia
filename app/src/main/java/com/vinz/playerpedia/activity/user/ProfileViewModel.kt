@@ -11,4 +11,8 @@ class ProfileViewModel (private val userUseCase: UserUseCase) : ViewModel() {
         return userUseCase.getUserByEmail(email)
     }
 
+    fun updateUser(user: User) {
+        userUseCase.updateUser(user)
+    }
+
 }
