@@ -4,10 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.vinz.playerpedia.R
-import com.vinz.playerpedia.activity.home.HomeViewModel
 import com.vinz.playerpedia.activity.home.MainActivity
 import com.vinz.playerpedia.activity.register.RegisterActivity
 import com.vinz.playerpedia.core.di.UserViewModelFactory
@@ -20,15 +18,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-
-        val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)
-        val isUserLogin = sharedPreferences.getBoolean("isUserLogin", false)
-        if (isUserLogin) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finishAffinity()
-        }
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         onClick()
     }
@@ -68,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
                 finishAffinity()
             } else {
-                Toast.makeText(this, "Email atau password salah", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.wrong_data), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -76,17 +67,17 @@ class LoginActivity : AppCompatActivity() {
     private fun validationInput(): Boolean {
         var countError = 0
         if (binding.etEmail.text.toString().isEmpty()) {
-            binding.etEmail.error = "Email tidak boleh kosong"
+            binding.etEmail.error = getString(R.string.error_empty_email)
             countError++
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text.toString())
                 .matches()
         ) {
-            binding.etEmail.error = "Email tidak valid"
+            binding.etEmail.error = getString(R.string.error_email_not_valid)
             countError++
         }
 
         if (binding.etPassword.text.toString().isEmpty()) {
-            binding.etPassword.error = "Password tidak boleh kosong"
+            binding.etPassword.error = getString(R.string.error_empty_password)
             countError++
         }
         return countError <= 0
