@@ -1,16 +1,18 @@
 package com.vinz.playerpedia.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
-import com.vinz.playerpedia.core.domain.model.Player
-import com.vinz.playerpedia.databinding.ItemPlayerBinding
-import java.io.File
+import com.google.android.material.textview.MaterialTextView
+import com.vinz.playerpedia.R
+import com.vinz.playerpedia.core.domain.model.PlayerRemote
 
-class PlayerAdapter(private val playerList: List<Player>) :
+class PlayerAdapter(
+    private val playerList: List<PlayerRemote>
+) :
     RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -20,50 +22,33 @@ class PlayerAdapter(private val playerList: List<Player>) :
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: Player)
-        fun onEditClicked(data: Player)
-        fun onDeleteClicked(data: Player)
+        fun onItemClicked(data: PlayerRemote)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemPlayerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_player, parent, false)
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val player = playerList[position]
-        holder.bind(player)
+        holder.playerName.text = player.name
+        holder.playerDescription.text = player.description
+        Glide.with(holder.itemView.context)
+            .load(player.photo)
+            .into(holder.imagePlayer)
+
         holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(player)
-        }
-        holder.binding.btnEditPlayer.setOnClickListener {
-            onItemClickCallback.onEditClicked(player)
-        }
-        holder.binding.btnDeletePlayer.setOnClickListener {
-            onItemClickCallback.onDeleteClicked(player)
-        }
-    }
-
-    class ViewHolder(val binding: ItemPlayerBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(player: Player) {
-            binding.player = player
-            binding.executePendingBindings()
+            onItemClickCallback.onItemClicked(playerList[position])
         }
     }
 
     override fun getItemCount(): Int = playerList.size
 
-    companion object {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        @JvmStatic
-        @BindingAdapter("setPhoto")
-        fun setPhoto(imgPhoto: ShapeableImageView, img: File) {
-            Glide.with(imgPhoto)
-                .load(img)
-                .into(imgPhoto)
-        }
+        val playerName: MaterialTextView = view.findViewById(R.id.tv_item_name)
+        val playerDescription: MaterialTextView = view.findViewById(R.id.tv_item_description)
+        val imagePlayer: ShapeableImageView = view.findViewById(R.id.img_item_photo)
     }
-
 }
