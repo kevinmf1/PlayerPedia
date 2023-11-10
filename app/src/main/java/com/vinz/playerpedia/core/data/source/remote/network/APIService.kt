@@ -7,5 +7,6 @@ import retrofit2.http.GET
 interface APIService {
 
     @GET("players")
-    fun getPlayers(): Call<PlayerResponse>
+    suspend fun getPlayers(): PlayerResponse
+
 }
