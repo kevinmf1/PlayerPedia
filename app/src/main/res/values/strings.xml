@@ -83,4 +83,6 @@
     <string name="no">No</string>
     <string name="empty_data">Empty Data</string>
     <string name="error_no_browser">No browser available.</string>
+    <string name="request_permission_accept">Permission request granted</string>
+    <string name="request_permission_reject">Permission request denied</string>
 </resources>

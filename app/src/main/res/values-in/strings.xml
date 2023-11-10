@@ -83,4 +83,6 @@
     <string name="no">Tidak</string>
     <string name="empty_data">Data Kosong</string>
     <string name="error_no_browser">Tidak ada browser yang tersedia.</string>
+    <string name="request_permission_accept">Permintaan izin dikabulkan</string>
+    <string name="request_permission_reject">Permintaan izin ditolak</string>
 </resources>
