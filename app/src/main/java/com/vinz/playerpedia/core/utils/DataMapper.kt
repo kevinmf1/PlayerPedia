@@ -5,6 +5,10 @@ import com.vinz.playerpedia.core.data.source.local.entity.UserEntity
 import com.vinz.playerpedia.core.domain.model.Player
 import com.vinz.playerpedia.core.domain.model.User
 
+// Entitiy adalah representasi dari tabel di database
+// Domain adalah representasi dari tabel di aplikasi
+// Response adalah representasi dari tabel di API
+
 object DataMapper {
 
     fun userMapEntitiesToDomain(input: List<PlayerEntity>): List<Player> =
