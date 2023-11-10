@@ -1,276 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.addplayer.AddActivity">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activity.addplayer.AddActivity">
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/back_home"
+            android:layout_width="24dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="40dp">
+            android:layout_marginStart="18dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@+id/add_player_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/add_player_title" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/back_home"
-                android:layout_width="24dp"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/add_player_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/add_player_title"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/player_name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/player_name_title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/back_home"
+            app:layout_constraintTop_toBottomOf="@+id/back_home" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player_name_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/player_name_title"
+            app:layout_constraintTop_toBottomOf="@+id/player_name_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player_name_edit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/ic_back"
-                app:layout_constraintBottom_toBottomOf="@+id/add_player_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/add_player_title" />
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/player_name_hint"
+                android:inputType="textNoSuggestions" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/add_player_title"
-                android:layout_width="wrap_content"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/player_club_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/player_club_title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/back_home"
+            app:layout_constraintTop_toBottomOf="@+id/player_name_input" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player_club_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/player_club_title"
+            app:layout_constraintTop_toBottomOf="@+id/player_club_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player_club_edit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/add_player_title"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/player_club_hint"
+                android:inputType="textNoSuggestions" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/player_name_title"
-                android:layout_width="wrap_content"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/player_position_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/player_position_title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/back_home"
+            app:layout_constraintTop_toBottomOf="@+id/player_club_input" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player_position_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/player_position_title"
+            app:layout_constraintTop_toBottomOf="@+id/player_position_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player_position_edit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/player_name_title"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/back_home"
-                app:layout_constraintTop_toBottomOf="@+id/back_home" />
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/player_position_hint"
+                android:inputType="textNoSuggestions" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player_name_input"
-                android:layout_width="0dp"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/player_nationally_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/player_nationally_title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/back_home"
+            app:layout_constraintTop_toBottomOf="@+id/player_position_input" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player_nationally_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/player_nationally_title"
+            app:layout_constraintTop_toBottomOf="@+id/player_nationally_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player_nationally_edit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/player_name_title"
-                app:layout_constraintTop_toBottomOf="@+id/player_name_title">
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/player_nationally_hint"
+                android:inputType="textNoSuggestions" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player_name_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/player_name_hint"
-                    android:inputType="textNoSuggestions" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/player_desc_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/player_desc_title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/player_name_title"
+            app:layout_constraintTop_toBottomOf="@+id/player_nationally_input" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/player_club_title"
-                android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player_desc_input"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/player_desc_title"
+            app:layout_constraintTop_toBottomOf="@+id/player_desc_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player_desc_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="top"
+                android:hint="@string/player_desc_hint"
+                android:inputType="textMultiLine"
+                android:maxLines="2" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/player_image_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/player_image_title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/player_desc_input"
+            app:layout_constraintTop_toBottomOf="@+id/player_desc_input" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/player_image_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:endIconDrawable="@drawable/ic_image"
+            app:endIconMode="custom"
+            app:endIconTint="@color/black"
+            app:endIconTintMode="multiply"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/player_image_title"
+            app:layout_constraintTop_toBottomOf="@+id/player_image_title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/player_image_edit"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/player_club_title"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/back_home"
-                app:layout_constraintTop_toBottomOf="@+id/player_name_input" />
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/player_image_hint"
+                android:inputType="none" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player_club_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/player_club_title"
-                app:layout_constraintTop_toBottomOf="@+id/player_club_title">
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player_club_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/player_club_hint"
-                    android:inputType="textNoSuggestions" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/player_image_preview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="@id/player_image_input"
+            app:layout_constraintStart_toStartOf="@id/player_image_input"
+            app:layout_constraintTop_toBottomOf="@id/player_image_input"
+            tools:src="@drawable/test1" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_player"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/add_player_save"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/player_image_preview" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/player_position_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/player_position_title"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/back_home"
-                app:layout_constraintTop_toBottomOf="@+id/player_club_input" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player_position_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/player_position_title"
-                app:layout_constraintTop_toBottomOf="@+id/player_position_title">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player_position_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/player_position_hint"
-                    android:inputType="textNoSuggestions" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/player_nationally_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/player_nationally_title"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/back_home"
-                app:layout_constraintTop_toBottomOf="@+id/player_position_input" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player_nationally_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/player_nationally_title"
-                app:layout_constraintTop_toBottomOf="@+id/player_nationally_title">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player_nationally_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/player_nationally_hint"
-                    android:inputType="textNoSuggestions" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/player_desc_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/player_desc_title"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/player_name_title"
-                app:layout_constraintTop_toBottomOf="@+id/player_nationally_input" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player_desc_input"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/player_desc_title"
-                app:layout_constraintTop_toBottomOf="@+id/player_desc_title">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player_desc_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/poppins_medium"
-                    android:gravity="top"
-                    android:hint="@string/player_desc_hint"
-                    android:inputType="textMultiLine"
-                    android:maxLines="2" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/player_image_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_bold"
-                android:text="@string/player_image_title"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@+id/player_desc_input"
-                app:layout_constraintTop_toBottomOf="@+id/player_desc_input" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/player_image_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:endIconDrawable="@drawable/ic_image"
-                app:endIconMode="custom"
-                app:endIconTint="@color/black"
-                app:endIconTintMode="multiply"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/player_image_title"
-                app:layout_constraintTop_toBottomOf="@+id/player_image_title">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/player_image_edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:cursorVisible="false"
-                    android:focusable="false"
-                    android:fontFamily="@font/poppins_medium"
-                    android:hint="@string/player_image_hint"
-                    android:inputType="none" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/player_image_preview"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:adjustViewBounds="true"
-                app:layout_constraintEnd_toEndOf="@id/player_image_input"
-                app:layout_constraintStart_toStartOf="@id/player_image_input"
-                app:layout_constraintTop_toBottomOf="@id/player_image_input"
-                tools:src="@drawable/test1" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/save_player"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/black"
-                android:fontFamily="@font/poppins_bold"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="@string/add_player_save"
-                app:iconGravity="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/player_image_preview" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</layout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
