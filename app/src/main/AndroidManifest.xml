@@ -46,12 +46,6 @@
             android:name=".activity.user.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.edit.EditActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.addplayer.AddActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.register.RegisterActivity"
             android:exported="false" />
         <activity
@@ -88,6 +82,7 @@
                 android:name="photopicker_activity:0:required"
                 android:value="" />
         </service>
+
     </application>
 
 </manifest>
