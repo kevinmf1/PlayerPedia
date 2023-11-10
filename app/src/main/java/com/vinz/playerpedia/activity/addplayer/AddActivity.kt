@@ -11,19 +11,13 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.home.MainActivity
 import com.vinz.playerpedia.core.di.PlayerViewModelFactory
 import com.vinz.playerpedia.core.domain.model.Player
 import com.vinz.playerpedia.core.utils.reduceFileImage
 import com.vinz.playerpedia.core.utils.uriToFile
 import com.vinz.playerpedia.databinding.ActivityAddBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class AddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddBinding
@@ -32,7 +26,8 @@ class AddActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_add)
+        binding = ActivityAddBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val factory = PlayerViewModelFactory.getInstance(this)
         addViewModel = ViewModelProvider(this, factory)[AddViewModel::class.java]
@@ -42,7 +37,7 @@ class AddActivity : AppCompatActivity() {
         }
 
         binding.savePlayer.setOnClickListener {
-            if(validationInput()) {
+            if (validationInput()) {
                 addPlayerToDatabase()
             }
         }
@@ -102,13 +97,14 @@ class AddActivity : AppCompatActivity() {
         }
 
         addViewModel.addPlayer(player!!)
-        Toast.makeText(this@AddActivity, "Data pemain berhasil ditambahkan", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@AddActivity, "Data pemain berhasil ditambahkan", Toast.LENGTH_SHORT)
+            .show()
         startActivity(Intent(this@AddActivity, MainActivity::class.java)).apply {
             finishAffinity()
         }
     }
 
-    private fun validationInput() : Boolean {
+    private fun validationInput(): Boolean {
         var countError = 0
 
         if (binding.playerNameEdit.text.isNullOrEmpty()) {
