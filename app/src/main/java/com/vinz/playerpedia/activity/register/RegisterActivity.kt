@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.home.MainActivity
@@ -19,7 +18,8 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.btnRegister.setOnClickListener {
             if (validateForm()) {
@@ -32,41 +32,41 @@ class RegisterActivity : AppCompatActivity() {
         var countError = 0
 
         if (binding.etName.text.toString().isEmpty()) {
-            binding.etName.error = "Nama tidak boleh kosong"
+            binding.etName.error = getString(R.string.error_empty_name)
             countError++
         }
 
         if (binding.etEmail.text.toString().isEmpty()) {
-            binding.etEmail.error = "Email tidak boleh kosong"
+            binding.etEmail.error = getString(R.string.error_empty_email)
             countError++
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text.toString())
                 .matches()
         ) {
-            binding.etEmail.error = "Email tidak valid"
+            binding.etEmail.error = getString(R.string.error_email_not_valid)
             countError++
         }
 
         if (binding.etUsername.text.toString().isEmpty()) {
-            binding.etUsername.error = "Username tidak boleh kosong"
+            binding.etUsername.error = getString(R.string.error_empty_username)
             countError++
         } else if (binding.etUsername.text.toString().length < 6) {
-            binding.etUsername.error = "Username minimal 6 karakter"
+            binding.etUsername.error = getString(R.string.error_username_length)
             countError++
         } else if (binding.etUsername.text.toString().contains(" ")) {
-            binding.etUsername.error = "Username tidak boleh mengandung spasi"
+            binding.etUsername.error = getString(R.string.error_username_space)
             countError++
         }
 
         if (binding.etPassword.text.toString().isEmpty()) {
-            binding.etPassword.error = "Password tidak boleh kosong"
+            binding.etPassword.error = getString(R.string.error_empty_password)
             countError++
         }
 
         if (binding.etRetypePassword.text.toString().isEmpty()) {
-            binding.etRetypePassword.error = "Konfirmasi password tidak boleh kosong"
+            binding.etRetypePassword.error = getString(R.string.error_empty_confirmation_password)
             countError++
         } else if (binding.etPassword.text.toString() != binding.etRetypePassword.text.toString()) {
-            binding.etRetypePassword.error = "Password tidak sama"
+            binding.etRetypePassword.error = getString(R.string.error_password_not_same)
             countError++
         }
 
@@ -79,15 +79,15 @@ class RegisterActivity : AppCompatActivity() {
 
         registerViewModel.getUserByEmail(binding.etEmail.text.toString()).observe(this) { user ->
             if (user != null) {
-                binding.etEmail.error = "Email sudah terdaftar"
+                binding.etEmail.error = getString(R.string.error_email_already_taken)
                 binding.etEmail.requestFocus()
                 Toast.makeText(
                     this,
-                    "Email sudah terdaftar, silahkan coba email lain",
+                    getString(R.string.try_another_email),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                Toast.makeText(this, "Berhasil mendaftar", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.successfully_register), Toast.LENGTH_SHORT).show()
                 val name = binding.etName.text.toString()
                 val email = binding.etEmail.text.toString()
                 val username = binding.etUsername.text.toString()

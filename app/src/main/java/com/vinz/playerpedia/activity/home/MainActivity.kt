@@ -2,22 +2,23 @@ package com.vinz.playerpedia.activity.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vinz.playerpedia.R
-import com.vinz.playerpedia.activity.addplayer.AddActivity
 import com.vinz.playerpedia.activity.detail.DetailActivity
-import com.vinz.playerpedia.activity.edit.EditActivity
 import com.vinz.playerpedia.activity.login.LoginActivity
 import com.vinz.playerpedia.activity.user.ProfileActivity
 import com.vinz.playerpedia.adapter.PlayerAdapter
+import com.vinz.playerpedia.core.data.source.local.datastore.NightModeViewModel
 import com.vinz.playerpedia.core.di.PlayerViewModelFactory
-import com.vinz.playerpedia.core.domain.model.Player
+import com.vinz.playerpedia.core.domain.model.PlayerRemote
+import com.vinz.playerpedia.core.utils.ResultWrapper
 import com.vinz.playerpedia.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -27,11 +28,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var homeViewModel: HomeViewModel
 
-    private var isLinearLayoutManager = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         recyclerView = binding.rvPlayers
         recyclerView.setHasFixedSize(true)
@@ -40,32 +41,49 @@ class MainActivity : AppCompatActivity() {
         val factory = PlayerViewModelFactory.getInstance(this)
         homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         homeViewModel.player.observe(this) { player ->
-            if (player.isNotEmpty()) {
-                visibilityEmptyData(false)
-                playerAdapter = PlayerAdapter(player)
-                recyclerView.adapter = playerAdapter
-
-                playerAdapter.setOnItemClickCallback(object : PlayerAdapter.OnItemClickCallback {
-                    override fun onItemClicked(data: Player) {
-                        navigateToAnotherActivity(data, DetailActivity::class.java)
+            if (player != null) {
+                when (player) {
+                    is ResultWrapper.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
                     }
 
-                    override fun onEditClicked(data: Player) {
-                        navigateToAnotherActivity(data, EditActivity::class.java)
+                    is ResultWrapper.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        visibilityEmptyData(false)
+
+                        player.payload.let { data ->
+                            if (data != null) {
+                                playerAdapter = PlayerAdapter(data)
+                            }
+                        }
+
+                        recyclerView.adapter = playerAdapter
+
+                        playerAdapter.setOnItemClickCallback(object :
+                            PlayerAdapter.OnItemClickCallback {
+                            override fun onItemClicked(data: PlayerRemote) {
+                                navigateToAnotherActivity(
+                                    data,
+                                    DetailActivity::class.java
+                                )
+                            }
+                        })
                     }
 
-                    override fun onDeleteClicked(data: Player) {
-                        dialogDelete(data)
+                    is ResultWrapper.Error -> {
+                        Log.d("Error", player.message.toString()  + " " + player.exception.toString())
+                        binding.progressBar.visibility = View.GONE
+                        visibilityEmptyData(true)
                     }
-                })
-            } else {
-                visibilityEmptyData(true)
+
+                    is ResultWrapper.Empty -> {
+                        Toast.makeText(this, getString(R.string.empty_data), Toast.LENGTH_SHORT).show()
+                        binding.progressBar.visibility = View.GONE
+                        visibilityEmptyData(true)
+                    }
+
+                }
             }
-        }
-
-        binding.fabAddPlayer.setOnClickListener {
-            val intent = Intent(this, AddActivity::class.java)
-            startActivity(intent)
         }
 
         binding.btnExitApp.setOnClickListener {
@@ -78,24 +96,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun dialogDelete(player: Player) {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Hapus Player")
-        builder.setMessage("Apakah anda yakin ingin menghapus player ini?")
-        builder.setPositiveButton("Ya") { _, _ ->
-            homeViewModel.deletePlayer(player)
-        }
-        builder.setNegativeButton("Tidak") { dialog, _ ->
-            dialog.cancel()
-        }
-        builder.show()
-    }
-
     private fun dialogLogout() {
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Logout")
-        builder.setMessage("Apakah anda yakin ingin logout?")
-        builder.setPositiveButton("Ya") { _, _ ->
+        builder.setTitle(getString(R.string.logout_title))
+        builder.setMessage(getString(R.string.logout_desc))
+        builder.setPositiveButton(getString(R.string.yes)) { _, _ ->
             val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putBoolean("isUserLogin", false)
@@ -105,7 +110,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finishAffinity()
         }
-        builder.setNegativeButton("Tidak") { dialog, _ ->
+        builder.setNegativeButton(getString(R.string.no)) { dialog, _ ->
             dialog.cancel()
         }
         builder.show()
@@ -117,7 +122,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvPlayers.visibility = if (boolean) View.GONE else View.VISIBLE
     }
 
-    private fun navigateToAnotherActivity(player: Player, activity: Class<*>) {
+    private fun navigateToAnotherActivity(player: PlayerRemote, activity: Class<*>) {
         val intent = Intent(this, activity)
         intent.putExtra("player", player)
         startActivity(intent)
