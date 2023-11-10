@@ -6,6 +6,8 @@ import com.vinz.playerpedia.core.data.UserRepository
 import com.vinz.playerpedia.core.data.source.local.datasource.PlayerDatabaseDataSource
 import com.vinz.playerpedia.core.data.source.local.datasource.UserDatabaseDataSource
 import com.vinz.playerpedia.core.data.source.local.room.AppDatabase
+import com.vinz.playerpedia.core.data.source.remote.datasource.RemoteDataSourceImpl
+import com.vinz.playerpedia.core.data.source.remote.network.APIConfig
 import com.vinz.playerpedia.core.domain.repository.IPlayerRepository
 import com.vinz.playerpedia.core.domain.repository.IUserRepository
 import com.vinz.playerpedia.core.domain.usecase.PlayerInteractor
@@ -17,11 +19,11 @@ import com.vinz.playerpedia.core.utils.AppExecutors
 object Injection {
     private fun providePlayerRepository(context: Context): IPlayerRepository {
         val database = AppDatabase.getInstance(context)
-
+        val remoteDataSource = RemoteDataSourceImpl.getInstance(APIConfig.provideApiService())
         val localDataSource = PlayerDatabaseDataSource.getInstance(database.playerDao())
         val appExecutors = AppExecutors()
 
-        return PlayerRepository.getInstance(localDataSource, appExecutors)
+        return PlayerRepository.getInstance(remoteDataSource, localDataSource, appExecutors)
     }
 
     private fun provideUserRepository(context: Context): IUserRepository {
