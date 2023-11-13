@@ -12,26 +12,29 @@ import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.vinz.playerpedia.R
-import com.vinz.playerpedia.core.data.source.local.datastore.NightModePreferences
-import com.vinz.playerpedia.core.data.source.local.datastore.NightModeViewModel
-import com.vinz.playerpedia.core.data.source.local.datastore.NightModeViewModelFactory
-import com.vinz.playerpedia.core.data.source.local.datastore.dataStore
-import com.vinz.playerpedia.core.di.UserViewModelFactory
-import com.vinz.playerpedia.core.domain.model.User
-import com.vinz.playerpedia.core.utils.reduceFileImage
-import com.vinz.playerpedia.core.utils.uriToFile
+import com.vinz.core.data.source.local.datastore.NightModePreferences
+import com.vinz.core.data.source.local.datastore.NightModeViewModel
+import com.vinz.core.data.source.local.datastore.NightModeViewModelFactory
+import com.vinz.core.data.source.local.datastore.dataStore
+import com.vinz.core.domain.model.User
+import com.vinz.core.utils.reduceFileImage
+import com.vinz.core.utils.uriToFile
+import com.vinz.playerpedia.activity.blur.BlurActivity
 import com.vinz.playerpedia.databinding.ActivityProfileBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 
+@AndroidEntryPoint
 class ProfileActivity : AppCompatActivity() {
 
-    private lateinit var profileViewModel: ProfileViewModel
+    private val profileViewModel: ProfileViewModel by viewModels()
     private lateinit var nightModeViewModel: NightModeViewModel
     private lateinit var binding: ActivityProfileBinding
     private var userId = 0
@@ -48,9 +51,6 @@ class ProfileActivity : AppCompatActivity() {
 
         val emailPreferences = getSharedPreferences("userAccount", MODE_PRIVATE)
         val email = emailPreferences.getString("email", "")
-        Log.d("email", email.toString())
-        val factory = UserViewModelFactory.getInstance(this)
-        profileViewModel = ViewModelProvider(this, factory)[ProfileViewModel::class.java]
 
         profileViewModel.getUserByEmail(email!!).observe(this) { user ->
             if (user != null) {
@@ -91,6 +91,11 @@ class ProfileActivity : AppCompatActivity() {
             isEdit = true
             isEnabledInput(true)
             visibilityButton(true)
+        }
+
+        binding.blurredImage.setOnClickListener {
+            val intent = Intent(this, BlurActivity::class.java)
+            startActivity(intent)
         }
 
         binding.editProfileImage.setOnClickListener {

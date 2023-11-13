@@ -1,4 +1,4 @@
-package com.vinz.playerpedia.adapter
+package com.vinz.core.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
-import com.vinz.playerpedia.R
-import com.vinz.playerpedia.core.domain.model.PlayerRemote
+import com.vinz.core.R
+import com.vinz.core.domain.model.PlayerRemote
 
 class PlayerAdapter(
     private val playerList: List<PlayerRemote>

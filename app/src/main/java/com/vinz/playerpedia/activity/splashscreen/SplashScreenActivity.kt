@@ -10,12 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.home.MainActivity
 import com.vinz.playerpedia.activity.login.LoginActivity
-import com.vinz.playerpedia.core.data.source.local.datastore.NightModePreferences
-import com.vinz.playerpedia.core.data.source.local.datastore.NightModeViewModel
-import com.vinz.playerpedia.core.data.source.local.datastore.NightModeViewModelFactory
-import com.vinz.playerpedia.core.data.source.local.datastore.dataStore
+import com.vinz.core.data.source.local.datastore.NightModePreferences
+import com.vinz.core.data.source.local.datastore.NightModeViewModel
+import com.vinz.core.data.source.local.datastore.NightModeViewModelFactory
+import com.vinz.core.data.source.local.datastore.dataStore
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashScreenActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

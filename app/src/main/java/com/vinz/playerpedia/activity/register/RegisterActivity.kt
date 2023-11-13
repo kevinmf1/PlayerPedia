@@ -3,18 +3,20 @@ package com.vinz.playerpedia.activity.register
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.home.MainActivity
-import com.vinz.playerpedia.core.di.UserViewModelFactory
-import com.vinz.playerpedia.core.domain.model.User
+import com.vinz.core.domain.model.User
 import com.vinz.playerpedia.databinding.ActivityRegisterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var registerViewModel: RegisterViewModel
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,9 +76,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun createAccount() {
-        val factory = UserViewModelFactory.getInstance(this)
-        registerViewModel = ViewModelProvider(this, factory)[RegisterViewModel::class.java]
-
         registerViewModel.getUserByEmail(binding.etEmail.text.toString()).observe(this) { user ->
             if (user != null) {
                 binding.etEmail.error = getString(R.string.error_email_already_taken)
