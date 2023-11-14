@@ -16,18 +16,6 @@ class PlayerRepository @Inject constructor(
     private val playerRemoteDataSource: RemoteDataSourceImpl
 ) : IPlayerRepository {
 
-//    companion object {
-//        @Volatile
-//        private var instance: PlayerRepository? = null
-//
-//        fun getInstance(
-//            remoteData: RemoteDataSourceImpl
-//        ): PlayerRepository =
-//            instance ?: synchronized(this) {
-//                instance ?: PlayerRepository(remoteData)
-//            }
-//    }
-
     override fun getAllRemotePlayer(): Flow<ResultWrapper<List<PlayerRemote>>> {
         return proceedFlow {
             playerRemoteDataSource.getPlayers().data.toPlayerRemote()

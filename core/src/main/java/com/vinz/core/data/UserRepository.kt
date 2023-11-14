@@ -16,19 +16,6 @@ class UserRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : IUserRepository {
 
-    companion object {
-        @Volatile
-        private var instance: UserRepository? = null
-
-        fun getInstance(
-            userData: UserDatabaseDataSource,
-            appExecutors: AppExecutors
-        ): UserRepository =
-            instance ?: synchronized(this) {
-                instance ?: UserRepository(userData, appExecutors)
-            }
-    }
-
     override fun insertUser(user: User) {
         val userEntity = DataMapper.userDomainToUserEntity(user)
         appExecutors.diskIO().execute { userDatabaseDataSource.insertUser(userEntity) }
