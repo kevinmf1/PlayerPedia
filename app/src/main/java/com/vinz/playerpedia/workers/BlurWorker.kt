@@ -4,10 +4,10 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.text.TextUtils
+import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import androidx.work.workDataOf
-import timber.log.Timber
 
 class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
 
@@ -24,7 +24,7 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
 
         return try {
             if (TextUtils.isEmpty(resourceUri)) {
-                Timber.e("Invalid input uri")
+                Log.e("Error", "Invalid input uri")
                 throw IllegalArgumentException("Invalid input uri")
             }
 
@@ -43,7 +43,7 @@ class BlurWorker(ctx: Context, params: WorkerParameters) : Worker(ctx, params) {
 
             Result.success(outputData)
         } catch (throwable: Throwable) {
-            Timber.e(throwable, "Error applying blur")
+            Log.d("Error", "Error applying blur", throwable)
             Result.failure()
         }
     }
