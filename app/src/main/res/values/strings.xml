@@ -2,10 +2,7 @@
     <string name="app_name">PlayerPedia</string>
     <string name="playerpedia_subtitle">Where you can find your favorite players</string>
     <string name="changeview_desc">For changing view</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="playerword_title">Everything about football player</string>
-    <string name="playerword_subtitle">Find your favorite player here!</string>
+
     <string name="search_btn_text">Search on Google</string>
     <string name="hint_email">Enter your email</string>
     <string name="hint_password">Enter your password</string>
@@ -22,32 +19,14 @@
     <string name="retype_password_title_value">Confirm Password</string>
     <string name="name_hint_value">Enter your name</string>
     <string name="username_title_value">Username</string>
-    <string name="profile_title">Profile</string>
+
     <string name="username_hint_value">Enter your username</string>
-    <string name="forgot_password_hint">Forgot your password?</string>
-    <string name="login_title_value">Login</string>
+
     <string name="login_value">Already have an account? Login</string>
     <string name="register_title">Create a New Account</string>
     <string name="register_btn_value">Register</string>
     <string name="nama_title_value">Name</string>
-    <string name="add_player_title">Add Player Data</string>
-    <string name="player_name_title">Player Name</string>
-    <string name="player_name_hint">Enter Player Name</string>
-    <string name="player_club_title">Player Club</string>
-    <string name="player_club_hint">Enter Player Club</string>
-    <string name="player_position_title">Player Position</string>
-    <string name="player_position_hint">Enter Player Position</string>
-    <string name="player_nationally_title">Player Nationality</string>
-    <string name="player_nationally_hint">Enter Player Nationality</string>
-    <string name="player_desc_title">Player Description</string>
-    <string name="player_desc_hint">Enter Player Description</string>
-    <string name="player_image_title">Player Image</string>
-    <string name="player_image_hint">Enter Player Image</string>
-    <string name="add_player_save">Save</string>
-    <string name="edit_player_title">Edit Player Data</string>
 
-    <string name="placeholder_name">aaaaaaasssssssssssddddddsaaaaa</string>
-    <string name="placeholder_desc">aassssssssssssssssssssssssssssssssssssssssssssssssssaaa</string>
     <string name="change_language">Change Language</string>
     <string name="phone_number_hint">Enter Phone Number</string>
     <string name="phone_number_title">Phone Number</string>
@@ -95,4 +74,6 @@
     <string name="cancel_blur">Cancel Blur</string>
     <string name="set_permissions_in_settings">Go to Settings -> Apps and Notifications ->
         WorkManager Demo -> App Permissions and grant access to Storage.</string>
+    <string name="select_image">Select Image</string>
+    <string name="no_data_enter">Sorry, no player data has been entered yet</string>
 </resources>
