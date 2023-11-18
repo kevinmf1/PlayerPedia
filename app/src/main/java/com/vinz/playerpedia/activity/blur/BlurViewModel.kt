@@ -18,8 +18,11 @@ import com.vinz.playerpedia.workers.KEY_IMAGE_URI
 import com.vinz.playerpedia.workers.SaveImageToFileWorker
 import com.vinz.playerpedia.workers.TAG_OUTPUT
 import com.vinz.playerpedia.workers.TAG_PROGRESS
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class BlurViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class BlurViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
 
     internal var imageUri: Uri? = null
     internal var outputUri: Uri? = null

@@ -8,22 +8,23 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "night_mode")
 
-class NightModePreferences private constructor(private val dataStore: DataStore<Preferences>) {
+class NightModePreferences @Inject constructor(private val dataStore: DataStore<Preferences>) {
 
-    private val NIGHT_MODE = booleanPreferencesKey("night_mode_key")
+    private val nightMode = booleanPreferencesKey("night_mode_key")
 
     fun getNightModeSettings(): Flow<Boolean> {
         return dataStore.data.map { preferences ->
-            preferences[NIGHT_MODE] ?: false
+            preferences[nightMode] ?: false
         }
     }
 
     suspend fun saveNightModeSettings(isDarkModeActive: Boolean) {
         dataStore.edit { preferences ->
-            preferences[NIGHT_MODE] = isDarkModeActive
+            preferences[nightMode] = isDarkModeActive
         }
     }
 

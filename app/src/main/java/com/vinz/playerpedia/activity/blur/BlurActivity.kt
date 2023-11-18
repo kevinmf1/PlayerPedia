@@ -7,9 +7,11 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,20 +24,20 @@ import com.vinz.playerpedia.databinding.ActivityBlurBinding
 import com.vinz.playerpedia.workers.KEY_IMAGE_URI
 import com.vinz.playerpedia.workers.PROGRESS
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import java.util.Arrays
 
+@Suppress("DEPRECATION")
 @AndroidEntryPoint
 class BlurActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBlurBinding
-    private lateinit var viewModel: BlurViewModel
+    private val viewModel: BlurViewModel by viewModels()
     private var blurLevel: Int = 1
     private var imageSelected: Uri? = null
 
-    private val REQUEST_CODE_IMAGE = 100
-    private val REQUEST_CODE_PERMISSIONS = 101
-    private val KEY_PERMISSIONS_REQUEST_COUNT = "KEY_PERMISSIONS_REQUEST_COUNT"
-    private val MAX_NUMBER_REQUEST_PERMISSIONS = 2
+    private val requestCodeImage = 100
+    private val requestCodePermission = 101
+    private val keyPermissionRequestCount = "KEY_PERMISSIONS_REQUEST_COUNT"
+    private val maxNumberRequestPermission = 2
     private var permissionRequestCount: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,12 +46,10 @@ class BlurActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         savedInstanceState?.let {
-            permissionRequestCount = it.getInt(KEY_PERMISSIONS_REQUEST_COUNT, 0)
+            permissionRequestCount = it.getInt(keyPermissionRequestCount, 0)
         }
 
         requestPermissionsIfNecessary()
-
-        viewModel = ViewModelProviders.of(this).get(BlurViewModel::class.java)
 
         binding.cancelButton.setOnClickListener { viewModel.cancelWork() }
 
@@ -66,7 +66,7 @@ class BlurActivity : AppCompatActivity() {
                 Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI
             )
-            startActivityForResult(chooseIntent, REQUEST_CODE_IMAGE)
+            startActivityForResult(chooseIntent, requestCodeImage)
         }
 
         binding.backButton.setOnClickListener {
@@ -175,7 +175,7 @@ class BlurActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(KEY_PERMISSIONS_REQUEST_COUNT, permissionRequestCount)
+        outState.putInt(keyPermissionRequestCount, permissionRequestCount)
     }
 
     private val permissions = Arrays.asList(
@@ -185,12 +185,12 @@ class BlurActivity : AppCompatActivity() {
 
     private fun requestPermissionsIfNecessary() {
         if (!checkAllPermissions()) {
-            if (permissionRequestCount < MAX_NUMBER_REQUEST_PERMISSIONS) {
+            if (permissionRequestCount < maxNumberRequestPermission) {
                 permissionRequestCount += 1
                 ActivityCompat.requestPermissions(
                     this,
                     permissions.toTypedArray(),
-                    REQUEST_CODE_PERMISSIONS
+                    requestCodePermission
                 )
             } else {
                 Toast.makeText(
@@ -222,7 +222,7 @@ class BlurActivity : AppCompatActivity() {
     ) {
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+        if (requestCode == requestCodePermission) {
             requestPermissionsIfNecessary() // no-op if permissions are granted already.
         }
     }
@@ -232,11 +232,11 @@ class BlurActivity : AppCompatActivity() {
 
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
-                REQUEST_CODE_IMAGE -> data?.let { handleImageRequestResult(data) }
-                else -> Timber.d("Unknown request code.")
+                requestCodeImage -> data?.let { handleImageRequestResult(data) }
+                else -> Log.d("Error", "Unknown request code.")
             }
         } else {
-            Timber.e(String.format("Unexpected Result code %s", resultCode))
+            Log.e("Error", String.format("Unexpected Result code %s", resultCode))
         }
     }
 
@@ -247,7 +247,7 @@ class BlurActivity : AppCompatActivity() {
         } ?: intent.data
 
         if (imageUri == null) {
-            Timber.e("Invalid input image Uri.")
+            Log.e("Error", "Invalid input image Uri.")
             return
         }
 

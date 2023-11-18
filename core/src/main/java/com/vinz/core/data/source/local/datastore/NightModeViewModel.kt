@@ -4,10 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.vinz.core.data.source.local.datastore.NightModePreferences
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NightModeViewModel(private val pref: NightModePreferences) : ViewModel() {
+
+@HiltViewModel
+class NightModeViewModel @Inject constructor(private val pref: NightModePreferences) : ViewModel() {
 
     fun getNightModeSettings(): LiveData<Boolean> {
         return pref.getNightModeSettings().asLiveData()
