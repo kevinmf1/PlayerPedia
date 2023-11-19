@@ -10,7 +10,7 @@ import com.vinz.core.domain.model.User
 object DataMapper {
 
     fun userDomainToUserEntity(input: User) = UserEntity(
-        id = input.id ?: 0,
+        id = input.id,
         name = input.name,
         username = input.username,
         email = input.email,
