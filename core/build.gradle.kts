@@ -86,6 +86,7 @@ dependencies {
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.5")
 
     // room
     val roomVersion = "2.5.2"
@@ -106,7 +107,6 @@ dependencies {
     testImplementation("app.cash.turbine:turbine:1.0.0")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 
-    // chucker
-    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
-    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+    // rotate image
+    implementation("androidx.exifinterface:exifinterface:1.3.6")
 }
