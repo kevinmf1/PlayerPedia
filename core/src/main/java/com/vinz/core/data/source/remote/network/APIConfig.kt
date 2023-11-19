@@ -1,25 +1,25 @@
 package com.vinz.core.data.source.remote.network
 
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import com.vinz.core.BuildConfig
 
 object APIConfig {
-    private fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+
+    fun provideApiService(chucker: ChuckerInterceptor): APIService {
+        val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor(chucker)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .build()
-    }
 
-    fun provideApiService(): APIService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://mancitysquad-1-q8493322.deta.app/")
+            .baseUrl(BuildConfig.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(provideOkHttpClient())
+            .client(okHttpClient)
             .build()
         return retrofit.create(APIService::class.java)
     }
