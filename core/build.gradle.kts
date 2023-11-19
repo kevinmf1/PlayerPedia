@@ -125,4 +125,6 @@ dependencies {
     // chucker
     debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+
+    implementation("androidx.exifinterface:exifinterface:1.3.6")
 }
