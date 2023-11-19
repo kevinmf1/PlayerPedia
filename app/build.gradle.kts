@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.LintOptions
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -35,6 +37,21 @@ android {
         }
     }
 
+    lint {
+        // If set to true (default), stops the build if errors are found.
+        abortOnError = false
+
+        // If set to true, lint only reports errors.
+        ignoreWarnings = true
+
+        // If set to true, lint also checks all dependencies as part of its analysis.
+        // Recommended for projects consisting of an app with library dependencies.
+        checkDependencies = false
+
+        baseline = file("lint.xml")
+        checkReleaseBuilds = true
+    }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -69,6 +86,7 @@ android {
 }
 
 dependencies {
+    debugImplementation(project(":core"))
     implementation(project(":core"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 

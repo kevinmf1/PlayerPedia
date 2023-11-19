@@ -31,6 +31,21 @@ android {
         }
     }
 
+    lint {
+        // If set to true (default), stops the build if errors are found.
+        abortOnError = false
+
+        // If set to true, lint only reports errors.
+        ignoreWarnings = true
+
+        // If set to true, lint also checks all dependencies as part of its analysis.
+        // Recommended for projects consisting of an app with library dependencies.
+        checkDependencies = false
+
+        baseline = file("lint.xml")
+        checkReleaseBuilds = true
+    }
+
     buildFeatures {
         buildConfig = true
     }
@@ -64,6 +79,7 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))    // default dependencies
+
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
