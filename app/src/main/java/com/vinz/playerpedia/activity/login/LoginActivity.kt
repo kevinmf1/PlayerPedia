@@ -3,18 +3,19 @@ package com.vinz.playerpedia.activity.login
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.home.MainActivity
 import com.vinz.playerpedia.activity.register.RegisterActivity
-import com.vinz.playerpedia.core.di.UserViewModelFactory
 import com.vinz.playerpedia.databinding.ActivityLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var loginViewModel: LoginViewModel
+    private val loginViewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +41,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun validationAccount(email: String, password: String) {
-        val factory = UserViewModelFactory.getInstance(this)
-        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
-
         loginViewModel.getUserByEmailAndPassword(email, password).observe(this) { user ->
             if (user != null) {
                 val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)

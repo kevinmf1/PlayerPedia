@@ -5,28 +5,27 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.detail.DetailActivity
 import com.vinz.playerpedia.activity.login.LoginActivity
 import com.vinz.playerpedia.activity.user.ProfileActivity
-import com.vinz.playerpedia.adapter.PlayerAdapter
-import com.vinz.playerpedia.core.data.source.local.datastore.NightModeViewModel
-import com.vinz.playerpedia.core.di.PlayerViewModelFactory
-import com.vinz.playerpedia.core.domain.model.PlayerRemote
-import com.vinz.playerpedia.core.utils.ResultWrapper
+import com.vinz.core.domain.model.PlayerRemote
+import com.vinz.core.utils.ResultWrapper
 import com.vinz.playerpedia.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var playerAdapter: PlayerAdapter
+    private lateinit var playerAdapter: com.vinz.core.ui.PlayerAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding: ActivityMainBinding
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel: HomeViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +37,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val factory = PlayerViewModelFactory.getInstance(this)
-        homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
         homeViewModel.player.observe(this) { player ->
             if (player != null) {
                 when (player) {
@@ -53,14 +50,14 @@ class MainActivity : AppCompatActivity() {
 
                         player.payload.let { data ->
                             if (data != null) {
-                                playerAdapter = PlayerAdapter(data)
+                                playerAdapter = com.vinz.core.ui.PlayerAdapter(data)
                             }
                         }
 
                         recyclerView.adapter = playerAdapter
 
                         playerAdapter.setOnItemClickCallback(object :
-                            PlayerAdapter.OnItemClickCallback {
+                            com.vinz.core.ui.PlayerAdapter.OnItemClickCallback {
                             override fun onItemClicked(data: PlayerRemote) {
                                 navigateToAnotherActivity(
                                     data,
