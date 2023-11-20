@@ -14,15 +14,15 @@ import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.detail.DetailActivity
 import com.vinz.playerpedia.activity.login.LoginActivity
 import com.vinz.playerpedia.activity.user.ProfileActivity
-import com.vinz.core.domain.model.PlayerRemote
-import com.vinz.core.utils.ResultWrapper
+import com.vinz.data.domain.model.PlayerRemote
+import com.vinz.data.utils.ResultWrapper
 import com.vinz.playerpedia.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var playerAdapter: com.vinz.core.ui.PlayerAdapter
+    private lateinit var playerAdapter: com.vinz.data.ui.PlayerAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding: ActivityMainBinding
     private val homeViewModel: HomeViewModel by viewModels()
@@ -50,14 +50,14 @@ class MainActivity : AppCompatActivity() {
 
                         player.payload.let { data ->
                             if (data != null) {
-                                playerAdapter = com.vinz.core.ui.PlayerAdapter(data)
+                                playerAdapter = com.vinz.data.ui.PlayerAdapter(data)
                             }
                         }
 
                         recyclerView.adapter = playerAdapter
 
                         playerAdapter.setOnItemClickCallback(object :
-                            com.vinz.core.ui.PlayerAdapter.OnItemClickCallback {
+                            com.vinz.data.ui.PlayerAdapter.OnItemClickCallback {
                             override fun onItemClicked(data: PlayerRemote) {
                                 navigateToAnotherActivity(
                                     data,
