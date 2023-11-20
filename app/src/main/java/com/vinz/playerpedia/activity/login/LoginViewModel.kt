@@ -2,8 +2,8 @@ package com.vinz.playerpedia.activity.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.vinz.core.domain.model.User
-import com.vinz.core.domain.usecase.UserUseCase
+import com.vinz.data.domain.model.User
+import com.vinz.data.domain.usecase.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

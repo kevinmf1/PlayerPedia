@@ -1,23 +1,19 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-parcelize")
-    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "com.vinz.playerpedia"
+    namespace = "com.vinz.data"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.vinz.playerpedia"
         minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -36,7 +32,6 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true
         buildConfig = true
     }
 
@@ -65,14 +60,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-
 }
 
 dependencies {
-    implementation(project(":data"))
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
-    // default dependencies
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))    // default dependencies
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
@@ -91,26 +82,31 @@ dependencies {
     // hilt
     implementation("com.google.dagger:hilt-android:2.48")
     ksp("com.google.dagger:hilt-android-compiler:2.48")
-    ksp("androidx.hilt:hilt-compiler:1.0.0")
-    ksp("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0")
 
-    // glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    // retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.5")
 
-    // navigation
-    val navVersion = "2.6.0"
-    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
-    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
-
-    // lottie animation
-    implementation("com.airbnb.android:lottie:6.1.0")
-
-    // circle image
-    implementation("de.hdodenhof:circleimageview:3.1.0")
+    // room
+    val roomVersion = "2.5.2"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
 
     // shimmer
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.work:work-runtime-ktx:2.7.1")
+    // glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // unit testing
+    testImplementation("io.mockk:mockk-android:1.13.8")
+    testImplementation("io.mockk:mockk-agent:1.13.8")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2")
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+
+    // rotate image
+    implementation("androidx.exifinterface:exifinterface:1.3.6")
 }

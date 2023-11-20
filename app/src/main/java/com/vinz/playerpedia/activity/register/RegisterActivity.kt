@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.home.MainActivity
-import com.vinz.core.domain.model.User
+import com.vinz.data.domain.model.User
 import com.vinz.playerpedia.databinding.ActivityRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
 

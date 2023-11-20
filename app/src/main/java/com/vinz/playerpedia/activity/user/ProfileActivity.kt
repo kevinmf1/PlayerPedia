@@ -3,6 +3,8 @@ package com.vinz.playerpedia.activity.user
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -17,15 +19,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.vinz.core.data.source.local.datastore.NightModeViewModel
-import com.vinz.core.domain.model.User
-import com.vinz.core.utils.reduceFileImage
-import com.vinz.core.utils.uriToFile
+import com.vinz.data.data.source.local.datastore.NightModeViewModel
+import com.vinz.data.domain.model.User
+import com.vinz.data.utils.reduceFileImage
+import com.vinz.data.utils.uriToFile
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.blur.BlurActivity
 import com.vinz.playerpedia.databinding.ActivityProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
+import java.io.FileOutputStream
 
 @AndroidEntryPoint
 class ProfileActivity : AppCompatActivity() {
@@ -60,6 +63,12 @@ class ProfileActivity : AppCompatActivity() {
                     .load(user.image)
                     .error(R.drawable.dummy_photo)
                     .into(binding.profileImage)
+
+                oldPhoto = if (user.image != null) {
+                    user.image
+                } else {
+                    drawableToFile(R.drawable.dummy_photo, "dummy_photo.png")
+                }
             }
         }
 
@@ -78,6 +87,16 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         onClick()
+    }
+
+    private fun drawableToFile(resourceId: Int, fileName: String): File? {
+        val bitmap = BitmapFactory.decodeResource(resources, resourceId)
+        val file = File(externalCacheDir, fileName)
+        val outStream = FileOutputStream(file)
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream)
+        outStream.flush()
+        outStream.close()
+        return file
     }
 
     private fun onClick() {
@@ -140,7 +159,9 @@ class ProfileActivity : AppCompatActivity() {
 
             if (player != null) {
                 profileViewModel.updateUser(player)
+                Log.d("Profile", "Player updated $player")
             }
+            Log.d("Profile", "Player not updated $player")
 
             savedWithSharedPreferences()
             isEdit = false
