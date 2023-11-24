@@ -1,12 +1,11 @@
-package com.vinz.data.data
+package com.vinz.dataapp.local
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.MutableLiveData
-import com.vinz.data.data.source.local.datasource.UserDatabaseDataSource
-import com.vinz.data.domain.model.User
-import com.vinz.data.utils.AppExecutors
-import com.vinz.data.utils.DataMapper
-import com.vinz.data.utils.getOrAwaitValue
+import com.vinz.dataapp.local.datasource.UserDatabaseDataSource
+import com.vinz.dataapp.local.entity.UserEntity
+import com.vinz.dataapp.utils.AppExecutors
+import com.vinz.dataapp.utils.DataMapper
+import com.vinz.domain.model.User
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -14,11 +13,15 @@ import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import java.util.concurrent.Executor
+
 
 class UserRepositoryTest {
 
@@ -112,17 +115,22 @@ class UserRepositoryTest {
     }
 
     @Test
-    fun `get user by id with right value`() {
+    fun `get user by id with right value`() = runTest {
         val userEntity = DataMapper.userDomainToUserEntity(mockUser)
-        coEvery { localDataSource.getUserById(1) } returns MutableLiveData(userEntity)
+        val flowUser: Flow<UserEntity> = flowOf(userEntity)
 
-        runTest {
-            val result = repository.getUserById(1).getOrAwaitValue()
-            assertEquals(mockUser.name, result.name)
-            assertEquals(mockUser.email, result.email)
+        coEvery { localDataSource.getUserById(1) } returns flowUser
 
-            coVerify(exactly = 1) { localDataSource.getUserById(1) }
-        }
+        val result = repository.getUserById(1)
+
+        val collectedItems = mutableListOf<User>()
+        result.collect { collectedItems.add(it) }
+
+        assertTrue(collectedItems.isNotEmpty())
+        assertEquals(mockUser.name, collectedItems[0].name)
+        assertEquals(mockUser.email, collectedItems[0].email)
+
+        coVerify(exactly = 1) { localDataSource.getUserById(1) }
     }
 
     @Test

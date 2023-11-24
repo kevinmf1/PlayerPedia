@@ -1,21 +1,22 @@
-package com.vinz.data.data
+package com.vinz.dataapp.remote
 
 import app.cash.turbine.test
-import com.vinz.data.data.source.remote.datasource.RemoteDataSourceImpl
-import com.vinz.data.data.source.remote.response.PlayerDataResponse
-import com.vinz.data.data.source.remote.response.PlayerResponse
+import com.vinz.dataapp.remote.datasource.RemoteDataSourceImpl
+import com.vinz.dataapp.remote.response.PlayerDataResponse
+import com.vinz.dataapp.remote.response.PlayerResponse
+import com.vinz.domain.utils.ResultWrapper
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
-import com.vinz.data.utils.ResultWrapper
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert
 import org.junit.Before
-import org.junit.Assert.*
 import org.junit.Test
+
 
 class PlayerRepositoryTest {
 
@@ -42,7 +43,7 @@ class PlayerRepositoryTest {
             }.test {
                 delay(110)
                 val data = expectMostRecentItem()
-                assertTrue(data is ResultWrapper.Loading)
+                Assert.assertTrue(data is ResultWrapper.Loading)
                 coVerify { remoteDataSource.getPlayers() }
             }
         }
@@ -76,9 +77,9 @@ class PlayerRepositoryTest {
             }.test {
                 delay(220)
                 val data = expectMostRecentItem()
-                assertTrue(data is ResultWrapper.Success)
-                assertEquals(data.payload?.size, 1)
-                assertEquals(data.payload?.get(0)?.id, 1)
+                Assert.assertTrue(data is ResultWrapper.Success)
+                Assert.assertEquals(data.payload?.size, 1)
+                Assert.assertEquals(data.payload?.get(0)?.id, 1)
                 coVerify { remoteDataSource.getPlayers() }
             }
         }
@@ -94,7 +95,7 @@ class PlayerRepositoryTest {
             }.test {
                 delay(220)
                 val data = expectMostRecentItem()
-                assertTrue(data is ResultWrapper.Error)
+                Assert.assertTrue(data is ResultWrapper.Error)
                 coVerify { remoteDataSource.getPlayers() }
             }
         }
@@ -116,7 +117,7 @@ class PlayerRepositoryTest {
             }.test {
                 delay(220)
                 val data = expectMostRecentItem()
-                assertTrue(data is ResultWrapper.Empty)
+                Assert.assertTrue(data is ResultWrapper.Empty)
                 coVerify { remoteDataSource.getPlayers() }
             }
         }
