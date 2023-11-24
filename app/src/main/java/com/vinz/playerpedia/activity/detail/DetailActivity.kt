@@ -6,9 +6,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.vinz.domain.model.PlayerRemote
 import com.vinz.playerpedia.R
-import com.vinz.data.domain.model.PlayerRemote
 import com.vinz.playerpedia.databinding.ActivityDetailBinding
+import com.vinz.playerpedia.utils.PlayerRemoteSend
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val player = intent.getParcelableExtra<PlayerRemote>("player") as PlayerRemote
+        val player = intent.getParcelableExtra<PlayerRemoteSend>("player") as PlayerRemoteSend
 
         Glide.with(this)
             .load(player.photo)

@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import com.vinz.domain.model.User
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.home.MainActivity
-import com.vinz.data.domain.model.User
 import com.vinz.playerpedia.databinding.ActivityRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
@@ -75,46 +77,52 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun createAccount() {
-        registerViewModel.getUserByEmail(binding.etEmail.text.toString()).observe(this) { user ->
-            if (user != null) {
-                binding.etEmail.error = getString(R.string.error_email_already_taken)
-                binding.etEmail.requestFocus()
-                Toast.makeText(
-                    this,
-                    getString(R.string.try_another_email),
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                Toast.makeText(this, getString(R.string.successfully_register), Toast.LENGTH_SHORT).show()
-                val name = binding.etName.text.toString()
-                val email = binding.etEmail.text.toString()
-                val username = binding.etUsername.text.toString()
-                val password = binding.etPassword.text.toString()
-                val phoneNumber = binding.etPhoneNumber.text.toString()
+        lifecycleScope.launch {
+            registerViewModel.getUserByEmail(binding.etEmail.text.toString()).collect { user ->
+                if (user != null) {
+                    binding.etEmail.error = getString(R.string.error_email_already_taken)
+                    binding.etEmail.requestFocus()
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        getString(R.string.try_another_email),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        getString(R.string.successfully_register),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    val name = binding.etName.text.toString()
+                    val email = binding.etEmail.text.toString()
+                    val username = binding.etUsername.text.toString()
+                    val password = binding.etPassword.text.toString()
+                    val phoneNumber = binding.etPhoneNumber.text.toString()
 
-                val userCreate = User(
-                    id = 0,
-                    name = name,
-                    username = username,
-                    email = email,
-                    phone = phoneNumber,
-                    password = password
-                )
+                    val userCreate = User(
+                        id = 0,
+                        name = name,
+                        username = username,
+                        email = email,
+                        phone = phoneNumber,
+                        password = password
+                    )
 
-                val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.putBoolean("isUserLogin", true)
-                editor.apply()
+                    val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putBoolean("isUserLogin", true)
+                    editor.apply()
 
-                val accountData = getSharedPreferences("userAccount", MODE_PRIVATE)
-                val accountEdit = accountData.edit()
-                accountEdit.putString("email", email)
-                accountEdit.apply()
+                    val accountData = getSharedPreferences("userAccount", MODE_PRIVATE)
+                    val accountEdit = accountData.edit()
+                    accountEdit.putString("email", email)
+                    accountEdit.apply()
 
-                registerViewModel.insertUser(userCreate)
-                startActivity(Intent(this, MainActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                })
+                    registerViewModel.insertUser(userCreate)
+                    startActivity(Intent(this@RegisterActivity, MainActivity::class.java).apply {
+                        addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    })
+                }
             }
         }
     }

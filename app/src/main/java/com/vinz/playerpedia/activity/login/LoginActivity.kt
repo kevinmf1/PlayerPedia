@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.home.MainActivity
 import com.vinz.playerpedia.activity.register.RegisterActivity
 import com.vinz.playerpedia.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -41,23 +43,25 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun validationAccount(email: String, password: String) {
-        loginViewModel.getUserByEmailAndPassword(email, password).observe(this) { user ->
-            if (user != null) {
-                val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.putBoolean("isUserLogin", true)
-                editor.apply()
+        lifecycleScope.launch {
+            loginViewModel.getUserByEmailAndPassword(email, password).collect { user ->
+                if (user != null) {
+                    val sharedPreferences = getSharedPreferences("isUserLogin", MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putBoolean("isUserLogin", true)
+                    editor.apply()
 
-                val accountData = getSharedPreferences("userAccount", MODE_PRIVATE)
-                val accountEdit = accountData.edit()
-                accountEdit.putString("email", email)
-                accountEdit.apply()
+                    val accountData = getSharedPreferences("userAccount", MODE_PRIVATE)
+                    val accountEdit = accountData.edit()
+                    accountEdit.putString("email", email)
+                    accountEdit.apply()
 
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finishAffinity()
-            } else {
-                Toast.makeText(this, getString(R.string.wrong_data), Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finishAffinity()
+                } else {
+                    Toast.makeText(this@LoginActivity, getString(R.string.wrong_data), Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

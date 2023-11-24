@@ -2,12 +2,12 @@ package com.vinz.playerpedia.di
 
 import android.content.Context
 import androidx.work.WorkManager
-import com.vinz.data.data.PlayerRepository
-import com.vinz.data.data.UserRepository
-import com.vinz.data.domain.usecase.PlayerInteractor
-import com.vinz.data.domain.usecase.PlayerUseCase
-import com.vinz.data.domain.usecase.UserInteractor
-import com.vinz.data.domain.usecase.UserUseCase
+import com.vinz.dataapp.local.UserRepository
+import com.vinz.dataapp.remote.PlayerRepository
+import com.vinz.domain.usecase.PlayerUseCase
+import com.vinz.domain.usecase.UserUseCase
+import com.vinz.presentation.player.PlayerInteractor
+import com.vinz.presentation.user.UserInteractor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

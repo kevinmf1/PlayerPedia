@@ -20,7 +20,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_splashscreen_subtitle"
         style="@style/RegularText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

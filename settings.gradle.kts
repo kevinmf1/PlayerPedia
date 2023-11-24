@@ -16,4 +16,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "PlayerPedia"
 include(":app")
-include(":data")
+include(":presentation")
+include(":di")
+include(":domain")
+include(":dataapp")

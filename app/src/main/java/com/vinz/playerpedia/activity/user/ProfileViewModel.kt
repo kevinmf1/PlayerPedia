@@ -1,16 +1,16 @@
 package com.vinz.playerpedia.activity.user
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.vinz.data.domain.model.User
-import com.vinz.data.domain.usecase.UserUseCase
+import com.vinz.domain.model.User
+import com.vinz.domain.usecase.UserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor (private val userUseCase: UserUseCase) : ViewModel() {
 
-    fun getUserByEmail(email: String): LiveData<User?> {
+    fun getUserByEmail(email: String): Flow<User?> {
         return userUseCase.getUserByEmail(email)
     }
 

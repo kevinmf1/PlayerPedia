@@ -10,19 +10,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vinz.domain.model.PlayerRemote
+import com.vinz.domain.utils.ResultWrapper
 import com.vinz.playerpedia.R
-import com.vinz.playerpedia.activity.detail.DetailActivity
 import com.vinz.playerpedia.activity.login.LoginActivity
 import com.vinz.playerpedia.activity.user.ProfileActivity
-import com.vinz.data.domain.model.PlayerRemote
-import com.vinz.data.utils.ResultWrapper
+import com.vinz.playerpedia.activity.detail.DetailActivity
+import com.vinz.playerpedia.adapter.PlayerAdapter
 import com.vinz.playerpedia.databinding.ActivityMainBinding
+import com.vinz.playerpedia.utils.toPlayerRemoteSend
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var playerAdapter: com.vinz.data.ui.PlayerAdapter
+    private lateinit var playerAdapter: PlayerAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding: ActivityMainBinding
     private val homeViewModel: HomeViewModel by viewModels()
@@ -50,14 +52,14 @@ class MainActivity : AppCompatActivity() {
 
                         player.payload.let { data ->
                             if (data != null) {
-                                playerAdapter = com.vinz.data.ui.PlayerAdapter(data)
+                                playerAdapter = PlayerAdapter(data)
                             }
                         }
 
                         recyclerView.adapter = playerAdapter
 
                         playerAdapter.setOnItemClickCallback(object :
-                            com.vinz.data.ui.PlayerAdapter.OnItemClickCallback {
+                            PlayerAdapter.OnItemClickCallback {
                             override fun onItemClicked(data: PlayerRemote) {
                                 navigateToAnotherActivity(
                                     data,
@@ -121,7 +123,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun navigateToAnotherActivity(player: PlayerRemote, activity: Class<*>) {
         val intent = Intent(this, activity)
-        intent.putExtra("player", player)
+        intent.putExtra("player", player.toPlayerRemoteSend())
         startActivity(intent)
     }
 
