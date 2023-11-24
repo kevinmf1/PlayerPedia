@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
-import com.vinz.dataapp.R
+import com.vinz.playerpedia.R
 import com.vinz.domain.model.PlayerRemote
 
 class PlayerAdapter(
