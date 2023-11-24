@@ -18,15 +18,16 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.vinz.data.data.source.local.datastore.NightModeViewModel
-import com.vinz.data.domain.model.User
-import com.vinz.data.utils.reduceFileImage
-import com.vinz.data.utils.uriToFile
+import com.vinz.dataapp.utils.reduceFileImage
+import com.vinz.dataapp.utils.uriToFile
+import com.vinz.domain.model.User
 import com.vinz.playerpedia.R
-import com.vinz.playerpedia.activity.blur.BlurActivity
+import com.vinz.playerpedia.activity.blurimage.BlurActivity
 import com.vinz.playerpedia.databinding.ActivityProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 
@@ -51,23 +52,25 @@ class ProfileActivity : AppCompatActivity() {
         val emailPreferences = getSharedPreferences("userAccount", MODE_PRIVATE)
         val email = emailPreferences.getString("email", "")
 
-        profileViewModel.getUserByEmail(email!!).observe(this) { user ->
-            if (user != null) {
-                userId = user.id
-                binding.userNameEdit.setText(user.name)
-                binding.usernameUserEdit.setText(user.username)
-                binding.emailUserEdit.setText(user.email)
-                binding.passwordUserEdit.setText(user.password)
-                binding.phoneUserEdit.setText(user.phone)
-                Glide.with(this)
-                    .load(user.image)
-                    .error(R.drawable.dummy_photo)
-                    .into(binding.profileImage)
+        lifecycleScope.launch {
+            profileViewModel.getUserByEmail(email!!).collect { user ->
+                if (user != null) {
+                    userId = user.id
+                    binding.userNameEdit.setText(user.name)
+                    binding.usernameUserEdit.setText(user.username)
+                    binding.emailUserEdit.setText(user.email)
+                    binding.passwordUserEdit.setText(user.password)
+                    binding.phoneUserEdit.setText(user.phone)
+                    Glide.with(this@ProfileActivity)
+                        .load(user.image)
+                        .error(R.drawable.dummy_photo)
+                        .into(binding.profileImage)
 
-                oldPhoto = if (user.image != null) {
-                    user.image
-                } else {
-                    drawableToFile(R.drawable.dummy_photo, "dummy_photo.png")
+                    oldPhoto = if (user.image != null) {
+                        user.image
+                    } else {
+                        drawableToFile(R.drawable.dummy_photo, "dummy_photo.png")
+                    }
                 }
             }
         }

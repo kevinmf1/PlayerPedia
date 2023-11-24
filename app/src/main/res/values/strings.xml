@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">PlayerPedia</string>
+    <string name="app_name_development">PlayerPedia Development</string>
+
     <string name="playerpedia_subtitle">Where you can find your favorite players</string>
     <string name="changeview_desc">For changing view</string>
 
@@ -64,16 +66,17 @@
     <string name="error_no_browser">No browser available.</string>
     <string name="request_permission_accept">Permission request granted</string>
     <string name="request_permission_reject">Permission request denied</string>
-    <string name="blurred_image">Blurred Image</string>
+
+    <string name="little_blurred">Little Blurred</string>
+    <string name="medium_blurred">Medium Blurred</string>
+    <string name="very_blurred">Very Blurred</string>
+    <string name="set_permissions_in_settings">Go to Settings -> Apps and Notifications ->
+        WorkManager Demo -> App Permissions and grant access to Storage.</string>
     <string name="level_blur_question">Select the image level of blur</string>
-    <string name="little_blurred">Sedikit Blur</string>
-    <string name="medium_blurred">Sedang Blur</string>
-    <string name="very_blurred">Sangat Blur</string>
+    <string name="select_image">Select Image</string>
+    <string name="blurred_image">Blurred Image</string>
     <string name="see_file">See File</string>
     <string name="go">Go</string>
     <string name="cancel_blur">Cancel Blur</string>
-    <string name="set_permissions_in_settings">Go to Settings -> Apps and Notifications ->
-        WorkManager Demo -> App Permissions and grant access to Storage.</string>
-    <string name="select_image">Select Image</string>
     <string name="no_data_enter">Sorry, no player data has been entered yet</string>
 </resources>

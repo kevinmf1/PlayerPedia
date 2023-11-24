@@ -7,10 +7,10 @@ import android.os.Looper
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.vinz.data.data.source.local.datastore.NightModeViewModel
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.activity.home.MainActivity
 import com.vinz.playerpedia.activity.login.LoginActivity
+import com.vinz.playerpedia.activity.user.NightModeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
