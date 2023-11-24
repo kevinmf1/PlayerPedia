@@ -46,7 +46,7 @@
         tools:replace="android:allowBackup"
         tools:targetApi="31">
         <activity
-            android:name=".activity.blur.BlurActivity"
+            android:name=".activity.blurimage.BlurActivity"
             android:exported="false" />
         <activity
             android:name=".activity.splashscreen.SplashScreenActivity"

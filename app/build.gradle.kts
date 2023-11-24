@@ -69,7 +69,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":data"))
+    implementation(project(":di"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     // default dependencies

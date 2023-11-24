@@ -62,15 +62,16 @@
     <string name="error_no_browser">Tidak ada browser yang tersedia.</string>
     <string name="request_permission_accept">Permintaan izin dikabulkan</string>
     <string name="request_permission_reject">Permintaan izin ditolak</string>
-    <string name="blurred_image">Gambar yang Diblur</string>
-    <string name="level_blur_question">Pilih tingkat blur gambar</string>
+
     <string name="little_blurred">Sedikit Blur</string>
     <string name="medium_blurred">Sedang Blur</string>
     <string name="very_blurred">Sangat Blur</string>
+    <string name="set_permissions_in_settings">Pergi ke Pengaturan -> Aplikasi dan Notifikasi -> Demo WorkManager -> Izin Aplikasi dan berikan akses ke Penyimpanan.</string>
+    <string name="level_blur_question">Pilih tingkat blur gambar</string>
+    <string name="select_image">Pilih Gambar</string>
+    <string name="blurred_image">Gambar yang Diblur</string>
     <string name="see_file">Lihat File</string>
     <string name="go">Pergi</string>
     <string name="cancel_blur">Batalkan Blur</string>
-    <string name="set_permissions_in_settings">Pergi ke Pengaturan -> Aplikasi dan Notifikasi -> Demo WorkManager -> Izin Aplikasi dan berikan akses ke Penyimpanan.</string>
-    <string name="select_image">Pilih Gambar</string>
     <string name="no_data_enter">Yahh, belum ada data pemain yang dimasukkan</string>
 </resources>

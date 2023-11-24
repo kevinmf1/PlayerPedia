@@ -13,7 +13,7 @@
         android:paddingBottom="30dp">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_back"
+            android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -142,7 +142,7 @@
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec odio magna. Fusce vel condimentum lacus. Suspendisse eget ullamcorper neque. Donec maximus, magna eu cursus sollicitudin, erat quam dapibus leo, et dapibus sapien metus et augue. Aliquam posuere cursus diam commodo scelerisque. Aliquam at turpis volutpat, feugiat nulla a, ornare est. Praesent sodales magna eget dapibus fermentum. Phasellus sit amet tortor eu magna rhoncus mollis non a massa. In sit amet finibus metus. In et mollis mauris. Curabitur nunc quam, feugiat et orci et, porttitor vulputate justo. Aenean interdum eu tellus et euismod." />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_search_google"
+            android:id="@+id/btnSearchGoogle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
