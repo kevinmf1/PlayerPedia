@@ -40,7 +40,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="${appIcon}"
         android:label="${appLabel}"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="${appIcon}"
         android:supportsRtl="true"
         android:theme="@style/Theme.PlayerPedia"
         tools:replace="android:allowBackup"
