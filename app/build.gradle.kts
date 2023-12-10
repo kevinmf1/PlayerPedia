@@ -88,6 +88,8 @@ android {
 }
 
 dependencies {
+    implementation("androidx.test.ext:junit-ktx:1.1.5")
+    implementation("androidx.test.espresso:espresso-intents:3.5.1")
     debugImplementation(project(":di"))
     implementation(project(":di"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
