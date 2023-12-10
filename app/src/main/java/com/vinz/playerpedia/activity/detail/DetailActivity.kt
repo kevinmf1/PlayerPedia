@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.vinz.domain.model.PlayerRemote
 import com.vinz.playerpedia.R
 import com.vinz.playerpedia.databinding.ActivityDetailBinding
 import com.vinz.playerpedia.utils.PlayerRemoteSend

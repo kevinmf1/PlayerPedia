@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">PlayerPedia</string>
+    <string name="app_name_development">PlayerPedia Pengembangan</string>
+
     <string name="playerpedia_subtitle">Dimana Anda dapat menemukan pemain favorit Anda</string>
     <string name="changeview_desc">Untuk mengganti tampilan</string>
 

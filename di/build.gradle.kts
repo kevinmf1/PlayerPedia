@@ -16,14 +16,57 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            buildConfigField("String", "API_URL", "\"https://mancitysquad-1-q8493322.deta.app/\"")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "API_URL", "\"https://mancitysquad-1-q8493322.deta.app/\"")
         }
     }
+
+    lint {
+        // If set to true (default), stops the build if errors are found.
+        abortOnError = false
+
+        // If set to true, lint only reports errors.
+        ignoreWarnings = true
+
+        // If set to true, lint also checks all dependencies as part of its analysis.
+        // Recommended for projects consisting of an app with library dependencies.
+        checkDependencies = false
+
+        baseline = file("lint.xml")
+        checkReleaseBuilds = true
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    flavorDimensions += "env"
+    productFlavors {
+        create("production") {
+            buildConfigField(
+                "String",
+                "API_URL",
+                "\"https://mancitysquad-1-q8493322.deta.app/\""
+            )
+        }
+        create("development") {
+            buildConfigField(
+                "String",
+                "API_URL",
+                "\"https://mancitysquad-1-q8493322.deta.app/\""
+            )
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -57,4 +100,9 @@ dependencies {
     // room
     implementation("androidx.room:room-runtime:2.5.2")
     ksp("androidx.room:room-compiler:2.5.2")
+
+    // chucker
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
+
 }

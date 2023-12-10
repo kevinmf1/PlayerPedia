@@ -1,34 +1,40 @@
 package com.vinz.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.vinz.dataapp.remote.network.APIService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModules {
 
+    @Singleton
     @Provides
-    fun providesApiService(): APIService {
+    fun provideChuckerInterceptor(@ApplicationContext context: Context): ChuckerInterceptor {
+        return ChuckerInterceptor(context)
+    }
 
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    @Provides
+    fun providesApiService(chuckerInterceptor: ChuckerInterceptor): APIService {
 
         val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
+            .addInterceptor(chuckerInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://mancitysquad-1-q8493322.deta.app/")
+            .baseUrl(BuildConfig.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

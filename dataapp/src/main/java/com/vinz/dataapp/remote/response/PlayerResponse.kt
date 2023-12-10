@@ -2,7 +2,6 @@ package com.vinz.dataapp.remote.response
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
-import com.vinz.dataapp.remote.response.PlayerDataResponse
 
 @Keep
 data class PlayerResponse(

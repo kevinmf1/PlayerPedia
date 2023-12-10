@@ -2,6 +2,7 @@
 
 package com.vinz.presentation.workers.helper
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -22,6 +23,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.UUID
 
+@SuppressLint("MissingPermission")
 fun makeStatusNotification(message: String, context: Context) {
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -49,6 +51,7 @@ fun makeStatusNotification(message: String, context: Context) {
     // Show the notification
     NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
 }
+
 fun sleep() {
     try {
         Thread.sleep(DELAY_TIME_MILLIS, 0)
@@ -57,6 +60,7 @@ fun sleep() {
     }
 
 }
+
 @WorkerThread
 fun blurBitmap(bitmap: Bitmap, applicationContext: Context): Bitmap {
     lateinit var rsContext: RenderScript
@@ -64,7 +68,8 @@ fun blurBitmap(bitmap: Bitmap, applicationContext: Context): Bitmap {
 
         // Create the output bitmap
         val output = Bitmap.createBitmap(
-            bitmap.width, bitmap.height, bitmap.config)
+            bitmap.width, bitmap.height, bitmap.config
+        )
 
         // Blur the image
         rsContext = RenderScript.create(applicationContext, RenderScript.ContextType.DEBUG)

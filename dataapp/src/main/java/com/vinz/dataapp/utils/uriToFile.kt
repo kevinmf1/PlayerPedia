@@ -1,5 +1,6 @@
 package com.vinz.dataapp.utils
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
@@ -86,6 +87,7 @@ fun File.reduceFileImage(): File {
     return file
 }
 
+@SuppressLint("NewApi")
 fun Bitmap.getRotatedBitmap(file: File): Bitmap? {
     val orientation = ExifInterface(file).getAttributeInt(
         ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED

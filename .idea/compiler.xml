@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
       <module name="PlayerPedia.blurimage" target="17" />
+      <module name="PlayerPedia.data" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">PlayerPedia</string>
+    <string name="app_name_development">PlayerPedia Development</string>
+
     <string name="playerpedia_subtitle">Where you can find your favorite players</string>
     <string name="changeview_desc">For changing view</string>
 

@@ -162,9 +162,7 @@ class ProfileActivity : AppCompatActivity() {
 
             if (player != null) {
                 profileViewModel.updateUser(player)
-                Log.d("Profile", "Player updated $player")
             }
-            Log.d("Profile", "Player not updated $player")
 
             savedWithSharedPreferences()
             isEdit = false

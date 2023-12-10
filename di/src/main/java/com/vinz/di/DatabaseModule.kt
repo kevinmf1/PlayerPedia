@@ -2,6 +2,7 @@ package com.vinz.di
 
 import android.content.Context
 import androidx.room.Room
+
 import com.vinz.dataapp.local.room.AppDatabase
 import dagger.Module
 import dagger.Provides

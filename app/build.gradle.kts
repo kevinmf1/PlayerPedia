@@ -35,6 +35,21 @@ android {
         }
     }
 
+    lint {
+        // If set to true (default), stops the build if errors are found.
+        abortOnError = false
+
+        // If set to true, lint only reports errors.
+        ignoreWarnings = true
+
+        // If set to true, lint also checks all dependencies as part of its analysis.
+        // Recommended for projects consisting of an app with library dependencies.
+        checkDependencies = false
+
+        baseline = file("lint.xml")
+        checkReleaseBuilds = true
+    }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true
@@ -48,6 +63,8 @@ android {
                 "API_URL",
                 "\"https://mancitysquad-1-q8493322.deta.app/\""
             )
+            manifestPlaceholders["appIcon"] = "@drawable/playerpedia"
+            manifestPlaceholders["appLabel"] = "@string/app_name"
         }
         create("development") {
             buildConfigField(
@@ -55,6 +72,8 @@ android {
                 "API_URL",
                 "\"https://mancitysquad-1-q8493322.deta.app/\""
             )
+            manifestPlaceholders["appIcon"] = "@drawable/playerpedia_development"
+            manifestPlaceholders["appLabel"] = "@string/app_name_development"
         }
     }
 
@@ -69,6 +88,9 @@ android {
 }
 
 dependencies {
+    implementation("androidx.test.ext:junit-ktx:1.1.5")
+    implementation("androidx.test.espresso:espresso-intents:3.5.1")
+    debugImplementation(project(":di"))
     implementation(project(":di"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
@@ -113,4 +135,15 @@ dependencies {
 
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.work:work-runtime-ktx:2.7.1")
+
+    // unit testing
+    testImplementation("io.mockk:mockk-android:1.13.8")
+    testImplementation("org.mockito:mockito-core:4.2.0")
+    testImplementation("io.mockk:mockk-agent:1.13.8")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.2")
+    testImplementation("app.cash.turbine:turbine:1.0.0")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
