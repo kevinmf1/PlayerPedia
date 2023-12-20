@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "289363455171",
+    "project_id": "playerpedia-835f0",
+    "storage_bucket": "playerpedia-835f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289363455171:android:3039f974c42a84bc208676",
+        "android_client_info": {
+          "package_name": "com.vinz.playerpedia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA6FTlVoHiibcO7tMbBcHEbBe4LsdVcRw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
