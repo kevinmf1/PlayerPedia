@@ -1,15 +1,18 @@
 package com.vinz.playerpedia.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textview.MaterialTextView
 import com.vinz.playerpedia.R
-import com.vinz.playerpedia.data.PlayerWordStart
+import com.vinz.domain.model.PlayerRemote
 
-class PlayerAdapter(private val playerList: List<PlayerWordStart>, private val context: Context) :
+class PlayerAdapter(
+    private val playerList: List<PlayerRemote>
+) :
     RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
 
     private lateinit var onItemClickCallback: OnItemClickCallback
@@ -19,7 +22,7 @@ class PlayerAdapter(private val playerList: List<PlayerWordStart>, private val c
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data: PlayerWordStart)
+        fun onItemClicked(data: PlayerRemote)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,14 +32,23 @@ class PlayerAdapter(private val playerList: List<PlayerWordStart>, private val c
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val player = playerList[position]
-        holder.word.text = player.playerLetter.toString()
+        holder.playerName.text = player.name
+        holder.playerDescription.text = player.description
+        Glide.with(holder.itemView.context)
+            .load(player.photo)
+            .into(holder.imagePlayer)
+
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(playerList[position])
+        }
     }
 
     override fun getItemCount(): Int = playerList.size
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val word: MaterialTextView = view.findViewById(R.id.word_title)
-
+        val playerName: MaterialTextView = view.findViewById(R.id.tv_item_name)
+        val playerDescription: MaterialTextView = view.findViewById(R.id.tv_item_description)
+        val imagePlayer: ShapeableImageView = view.findViewById(R.id.img_item_photo)
     }
 }

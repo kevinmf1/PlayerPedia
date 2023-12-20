@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">PlayerPedia</string>
+    <string name="app_name_development">PlayerPedia Pengembangan</string>
+
+    <string name="playerpedia_subtitle">Dimana Anda dapat menemukan pemain favorit Anda</string>
+    <string name="changeview_desc">Untuk mengganti tampilan</string>
+
+    <string name="search_btn_text">Cari di Google</string>
+    <string name="hint_email">Masukkan email Anda</string>
+    <string name="hint_password">Masukkan kata sandi Anda</string>
+    <string name="login_title">Masuk</string>
+    <string name="register_account_value">Belum memiliki akun? Daftar</string>
+
+    <string name="phone_number_hint_value">Masukkan nomor telepon Anda</string>
+    <string name="email_hint_value">Masukkan email Anda</string>
+    <string name="email_value">Email</string>
+    <string name="phone_number_value">Nomor Telepon</string>
+    <string name="password_hint_value">Masukkan kata sandi Anda</string>
+    <string name="retype_password_hint_value">Masukkan ulang kata sandi Anda</string>
+    <string name="password_title_value">Kata Sandi</string>
+    <string name="retype_password_title_value">Konfirmasi Kata Sandi</string>
+    <string name="name_hint_value">Masukkan nama Anda</string>
+    <string name="username_title_value">Username</string>
+    <string name="username_hint_value">Masukkan username Anda</string>
+    <string name="login_value">Sudah memiliki akun? Masuk</string>
+    <string name="register_title">Buat Akun Baru</string>
+    <string name="register_btn_value">Daftar</string>
+    <string name="nama_title_value">Nama</string>
+
+    <string name="change_language">Ganti Bahasa</string>
+    <string name="phone_number_hint">Masukkan Nomor Telepon</string>
+    <string name="phone_number_title">Nomor Telepon</string>
+    <string name="password_hint">Masukkan Kata Sandi</string>
+    <string name="password_title">Kata Sandi</string>
+    <string name="email_hint">Masukkan Email</string>
+    <string name="email_title">Email</string>
+    <string name="username_hint">Masukkan Username</string>
+    <string name="username_title">Username</string>
+    <string name="name_hint">Masukkan Nama Pengguna</string>
+    <string name="name_title">Nama Pengguna</string>
+    <string name="user_data_title">Data Pengguna</string>
+    <string name="dark_mode_title">Mode Gelap</string>
+    <string name="goals_assists">%1$d Gol dan %2$d Assist</string>
+    <string name="active_player">Pemain Aktif</string>
+    <string name="retired_player">Pemain Pensiun</string>
+    <string name="wrong_data">Email atau kata sandi salah</string>
+    <string name="error_empty_email">Email tidak boleh kosong</string>
+    <string name="error_empty_password">Kata sandi tidak boleh kosong</string>
+    <string name="error_email_not_valid">Email tidak valid</string>
+    <string name="error_empty_name">Nama tidak boleh kosong</string>
+    <string name="error_empty_username">Username tidak boleh kosong</string>
+    <string name="error_username_length">Username minimal 6 karakter</string>
+    <string name="error_username_space">Username tidak boleh mengandung spasi</string>
+    <string name="error_empty_confirmation_password">Konfirmasi kata sandi tidak boleh kosong</string>
+    <string name="error_password_not_same">Kata sandi tidak sama</string>
+    <string name="error_email_already_taken">Email sudah terdaftar</string>
+    <string name="try_another_email">Email sudah terdaftar, silakan coba email lain</string>
+    <string name="successfully_register">Berhasil mendaftar</string>
+    <string name="logout_title">Keluar</string>
+    <string name="logout_desc">Apakah Anda yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="empty_data">Data Kosong</string>
+    <string name="error_no_browser">Tidak ada browser yang tersedia.</string>
+    <string name="request_permission_accept">Permintaan izin dikabulkan</string>
+    <string name="request_permission_reject">Permintaan izin ditolak</string>
+
+    <string name="little_blurred">Sedikit Blur</string>
+    <string name="medium_blurred">Sedang Blur</string>
+    <string name="very_blurred">Sangat Blur</string>
+    <string name="set_permissions_in_settings">Pergi ke Pengaturan -> Aplikasi dan Notifikasi -> Demo WorkManager -> Izin Aplikasi dan berikan akses ke Penyimpanan.</string>
+    <string name="level_blur_question">Pilih tingkat blur gambar</string>
+    <string name="select_image">Pilih Gambar</string>
+    <string name="blurred_image">Gambar yang Diblur</string>
+    <string name="see_file">Lihat File</string>
+    <string name="go">Pergi</string>
+    <string name="cancel_blur">Batalkan Blur</string>
+    <string name="no_data_enter">Yahh, belum ada data pemain yang dimasukkan</string>
+</resources>

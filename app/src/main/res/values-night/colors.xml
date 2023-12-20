@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#000000</color>
+    <color name="blue_light">#6499E9</color>
+    <color name="bg_player">#164863</color>
+    <color name="bg_main">#0C356A</color>
+    <color name="colorButton">#427D9D</color>
+    <color name="bg_profile">#0C356A</color>
+    <color name="inputHint">#B3EEEDED</color>
+    <color name="bg_itemplayer_placeholder">#427D9D</color>
+
+</resources>

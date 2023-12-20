@@ -1,8 +1,82 @@
 <resources>
     <string name="app_name">PlayerPedia</string>
-    <string name="playerpedia_title">PlayerPedia</string>
+    <string name="app_name_development">PlayerPedia Development</string>
+
     <string name="playerpedia_subtitle">Where you can find your favorite players</string>
     <string name="changeview_desc">For changing view</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="search_btn_text">Search on Google</string>
+    <string name="hint_email">Enter your email</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="login_title">Login</string>
+    <string name="register_account_value">Don\'t have an account? Register</string>
+
+    <string name="phone_number_hint_value">Enter your phone number</string>
+    <string name="email_hint_value">Enter your email</string>
+    <string name="email_value">Email</string>
+    <string name="phone_number_value">Phone Number</string>
+    <string name="password_hint_value">Enter your password</string>
+    <string name="retype_password_hint_value">Re-enter your password</string>
+    <string name="password_title_value">Password</string>
+    <string name="retype_password_title_value">Confirm Password</string>
+    <string name="name_hint_value">Enter your name</string>
+    <string name="username_title_value">Username</string>
+
+    <string name="username_hint_value">Enter your username</string>
+
+    <string name="login_value">Already have an account? Login</string>
+    <string name="register_title">Create a New Account</string>
+    <string name="register_btn_value">Register</string>
+    <string name="nama_title_value">Name</string>
+
+    <string name="change_language">Change Language</string>
+    <string name="phone_number_hint">Enter Phone Number</string>
+    <string name="phone_number_title">Phone Number</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="password_title">Password</string>
+    <string name="email_hint">Enter Email</string>
+    <string name="email_title">Email</string>
+    <string name="username_hint">Enter Username</string>
+    <string name="username_title">Username</string>
+    <string name="name_hint">Enter User Name</string>
+    <string name="name_title">User Name</string>
+    <string name="user_data_title">User Data</string>
+    <string name="dark_mode_title">Dark Mode</string>
+    <string name="goals_assists">%1$d Goals and %2$d Assists</string>
+    <string name="active_player">Active Player</string>
+    <string name="retired_player">Retired Player</string>
+    <string name="wrong_data">Incorrect email or password</string>
+    <string name="error_empty_email">Email cannot be empty</string>
+    <string name="error_empty_password">Password cannot be empty</string>
+    <string name="error_email_not_valid">Invalid email</string>
+    <string name="error_empty_name">Name cannot be empty</string>
+    <string name="error_empty_username">Username cannot be empty</string>
+    <string name="error_username_length">Username must be at least 6 characters</string>
+    <string name="error_username_space">Username cannot contain spaces</string>
+    <string name="error_empty_confirmation_password">Confirmation password cannot be empty</string>
+    <string name="error_password_not_same">Passwords do not match</string>
+    <string name="error_email_already_taken">Email already registered</string>
+    <string name="try_another_email">Email already registered, please try another email</string>
+    <string name="successfully_register">Successfully registered</string>
+    <string name="logout_title">Logout</string>
+    <string name="logout_desc">Are you sure you want to logout?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="empty_data">Empty Data</string>
+    <string name="error_no_browser">No browser available.</string>
+    <string name="request_permission_accept">Permission request granted</string>
+    <string name="request_permission_reject">Permission request denied</string>
+
+    <string name="little_blurred">Little Blurred</string>
+    <string name="medium_blurred">Medium Blurred</string>
+    <string name="very_blurred">Very Blurred</string>
+    <string name="set_permissions_in_settings">Go to Settings -> Apps and Notifications ->
+        WorkManager Demo -> App Permissions and grant access to Storage.</string>
+    <string name="level_blur_question">Select the image level of blur</string>
+    <string name="select_image">Select Image</string>
+    <string name="blurred_image">Blurred Image</string>
+    <string name="see_file">See File</string>
+    <string name="go">Go</string>
+    <string name="cancel_blur">Cancel Blur</string>
+    <string name="no_data_enter">Sorry, no player data has been entered yet</string>
 </resources>
