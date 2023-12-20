@@ -1,7 +1,9 @@
-name: Build and Deploy
+name: Build and Deploy The Code
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 jobs:
